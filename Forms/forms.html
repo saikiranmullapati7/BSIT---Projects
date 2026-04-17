@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+  </head>
+  <body>
+    <form action="welcome.html" method="get">
+      Name:
+      <input
+        type="text"
+        name="username"
+        placeholder="Enter name"
+        required
+      /><br /><br />
+
+      Password: <input type="password" name="password" required /><br /><br />
+
+      Email: <input type="email" name="email" /><br /><br />
+
+      Gender:
+      <input type="radio" name="gender" value="male" /> Male
+      <input type="radio" name="gender" value="female" /> Female<br /><br />
+
+      Hobbies:
+      <input type="checkbox" name="hobbies" value="music" /> Music
+      <input type="checkbox" name="hobbies" value="reading" /> Reading
+      <input type="checkbox" name="hobbies" value="drawing" /> Drawing
+      <input type="checkbox" name="hobbies" value="sports" /> Sports<br /><br />
+
+      Message:
+      <textarea name="message"></textarea><br /><br />
+
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
