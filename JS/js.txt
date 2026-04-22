@@ -1,0 +1,106 @@
+What is JavaScript?
+ 
+JavaScript is a language used to make websites interactive and dynamic.
+ 
+Without JavaScript → website is just text and images
+With JavaScript → buttons work, forms validate, content changes
+==================================================================================================
+Interactive = user can do something, and the website responds
+ 
+User action → website reaction
+ 
+Examples:
+Clicking a button → shows a message
+Filling a form → shows error/success
+Hovering on image → zoom effect
+==================================================================================================
+Dynamic = content changes automatically without reloading the page
+==================================================================================================
+WhatsApp
+You type a message → tap send → message is sent
+You did action → app responded
+==================================================================================================
+WhatsApp
+New messages appear automatically
+You didn’t refresh — still updated
+==================================================================================================
+Interactive = Action
+
+Dynamic = Change
+==================================================================================================
+It runs inside the browser (Chrome, Edge, etc.)
+It works along with HTML (structure) and CSS (design)
+ 
+Example: button click, form validation, animations
+==================================================================================================
+How JavaScript Works:
+ 
+Browser reads HTML file
+Then executes JavaScript code
+JavaScript can change content, style, and behavior
+==================================================================================================
+Features of JavaScript:
+
+Easy to learn
+Fast execution
+Works on all browsers
+Supports event-based programming (responds to user actions)
+==================================================================================================
+JavaScript in <head> section
+
+JavaScript in <body> section
+ 
+External JavaScript file
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+<script>
+
+  console.log("JS in body");
+</script>
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+<html>
+<body>
+ 
+<h1>Hello</h1>
+ 
+<script>
+
+  console.log("JS in body");
+</script>
+ 
+</body>
+</html>
+==================================================================================================
+Head → runs before page loads
+Body (end) → runs after page loads  (recommended)
+External file → used in real projects
+==================================================================================================
+let a = 10;
+let b = 5;
+ 
+console.log(a + c); //  error (c is not defined)
+
+Sometimes just checking logic helps find mistakes
+==================================================================================================
+What is JavaScript
+
+How to add JavaScript (inline, internal, external)
+
+Variables (let, const, var)
+
+Data Types (string, number, boolean, null, undefined)
+
+Operators (arithmetic, comparison, logical)
+
+Input & Output
+
+alert()
+
+console.log()
+
+document. Write()
+==================================================================================================
+
+
+
+
