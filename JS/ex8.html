@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>document.write practice</title>
+  </head>
+  <body>
+    <h1>Before document.write</h1>
+    <p>This text will be replaced or changed.</p>
+
+    <script>
+      // 1. Write plain text
+      document.write("Hello from document.write!<br>");
+
+      // 2. Write HTML elements
+      document.write("<h2>New heading from JS</h2>");
+      document.write("<p>New paragraph written by JS.</p>");
+
+      // 3. Write some calculation
+      document.write("5 + 6 = " + (5 + 6) + "<br>");
+
+      // 4. Write current date
+      document.write("Today: " + new Date() + "<br>");
+    </script>
+  </body>
+</html>
