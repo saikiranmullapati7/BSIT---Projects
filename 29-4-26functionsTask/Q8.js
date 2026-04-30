@@ -14,16 +14,16 @@ function calculateParkingFee(hours) {
         return "Invalid hours"
     }else if(hours <= 2) {
         fee = hours * 20;
-        breakdown = `${hours} hr(s) x $20`;
+        breakdown = `${hours} hr(s) x ₹20`;
     }else if(hours <= 5) {
         fee = 2 * 20 +(hours - 2) * 15;
-        breakdown = `2 hr x $20 + ${hours - 2} hr x $15`;
+        breakdown = `2 hr x ₹20 + ${hours - 2} hr x ₹15`;
     }else if(hours <= 12) {
         fee = 2 * 20 + 3 * 15 + (hours - 5) * 10;
-        breakdown = `2hrx$20 + 3hrx$15 + ${hours - 5} hrx$10`;
+        breakdown = `2hrx₹20 + 3hrx$15 + ${hours - 5} hrx₹10`;
     }else{
         fee = 2*20 + 3*15 + 7*10 + (hours - 12) *8;
-        breakdown = `Flat 12hr + ${hours - 12} hrx$8`;
+        breakdown = `Flat 12hr + ${hours - 12} hrx₹8`;
     }
     return { hours, fee, breakdown};
 }
