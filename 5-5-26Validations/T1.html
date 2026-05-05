@@ -20,7 +20,7 @@
 
         let useridpatt = /^[a-zA-Z0-9]{6,9}$/;
         if (!useridpatt.test(userid)) {
-          alert("Required and must be of length 6 to 9");
+          alert("User id Required and must be of length 6 to 9");
           return false;
         }
 
@@ -30,16 +30,16 @@
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
         if (!passwordpatt.test(password)) {
-          alert("Password must be 8 characters");
+          alert("Password must be 8 characters @, A-Z, a-z, 0-9");
           return false;
         }
 
         //name
 
-        let namepatt = /^[A-Z][a-z]*$/;
+        let namepatt = /^[A-Z][a-z]{2}*$/;
 
         if (!namepatt.test(name)) {
-          alert("Name should contain only letters");
+          alert("Name should contain only letters Min 2");
           return false;
         }
 
@@ -58,7 +58,7 @@
 
         let zipcodepatt = /^[0-9]{6}$/;
         if (!zipcodepatt.test(zipcode)) {
-          alert("Zipcode only 6 digits");
+          alert("Zipcode only 6 digits only");
           return false;
         }
 
@@ -67,7 +67,7 @@
         let mailpatt =
           /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.(com|in|co)$/;
         if (!mailpatt.test(mail)) {
-          alert("Email must be @ special char");
+          alert("Email must be @ special char .(com|in|co)");
           return false;
         }
 
@@ -98,6 +98,8 @@
           type="text"
           id="id"
           name="id"
+          placeholder="User id Required and must be of length 6 to 9"
+          style="width: 300px"
         />
       </div>
       <br /><br />
@@ -107,6 +109,8 @@
           type="password"
           name="password"
           id="password"
+          style="width: 300px"
+          placeholder="Password must be 8 characters @, A-Z, a-z, 0-9"
         />
       </div>
       <br /><br />
@@ -116,6 +120,8 @@
           type="text"
           id="name"
           name="name"
+          placeholder="Name should contain only letters Min 2"
+          style="width: 300px"
         />
       </div>
       <br /><br />
@@ -125,6 +131,8 @@
           type="text"
           id="address"
           name="address"
+          placeholder="Please enter a valid address containing only alphanumeric characters, spaces, or .,#'-."
+          style="width: 500px"
         />
       </div>
       <br /><br />
@@ -147,7 +155,13 @@
       <br /><br />
       <div>
         <label>Zip Code: </label>
-        &nbsp;&nbsp;<input type="text" id="code" name="code" />
+        &nbsp;&nbsp;<input
+          type="text"
+          id="code"
+          name="code"
+          placeholder="Zipcode only 6 digits only"
+          style="width: 300px"
+        />
       </div>
       <br /><br />
       <div>
@@ -156,6 +170,8 @@
           type="email"
           name="email"
           id="email"
+          placeholder="Email must be @ special char .(com|in|co)"
+          style="width: 300px"
         />
       </div>
       <br /><br />
@@ -179,6 +195,8 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea
           name="about"
           id="about"
+          placeholder="Please enter a valid about containing only text min 3 & max 100 words"
+          style="width: 300px"
         ></textarea>
       </div>
       <br />
