@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function validateForm() {
+        const userid = document.getElementById("id").value;
+        const password = document.getElementById("password").value;
+        const name = document.getElementById("name").value;
+        const address = document.getElementById("address").value;
+        const zipcode = document.getElementById("code").value;
+        const mail = document.getElementById("email").value;
+        const about = document.getElementById("about").value;
+
+        // userID
+
+        let useridpatt = /^[a-zA-Z0-9]{6,9}$/;
+        if (!useridpatt.test(userid)) {
+          alert("Required and must be of length 6 to 9");
+          return false;
+        }
+
+        // password
+
+        let passwordpatt =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+        if (!passwordpatt.test(password)) {
+          alert("Password must be 8 characters");
+          return false;
+        }
+
+        //name
+
+        let namepatt = /^[A-Z][a-z]*$/;
+
+        if (!namepatt.test(name)) {
+          alert("Name should contain only letters");
+          return false;
+        }
+
+        // address
+
+        let addresspatt = /^[a-zA-Z0-9\s,.'#-]{1,100}$/;
+
+        if (!addresspatt.test(address)) {
+          alert(
+            "Please enter a valid address containing only alphanumeric characters, spaces, or .,#'-.",
+          );
+          return false;
+        }
+
+        // ZIPcode
+
+        let zipcodepatt = /^[0-9]{6}$/;
+        if (!zipcodepatt.test(zipcode)) {
+          alert("Zipcode only 6 digits");
+          return false;
+        }
+
+        // mail
+
+        let mailpatt =
+          /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.(com|in|co)$/;
+        if (!mailpatt.test(mail)) {
+          alert("Email must be @ special char");
+          return false;
+        }
+
+        // about
+
+        let aboutpatt = /^\s*(\S+\s+){3,99}\S+\s*$/;
+
+        if (!aboutpatt.test(about)) {
+          alert(
+            "Please enter a valid about containing only text min 3 & max 100 words",
+          );
+          return false;
+        }
+
+        alert("Form submitted successfully");
+        return true;
+      }
+    </script>
+
+    <form method="get" onsubmit="return validateForm();">
+      <div>
+        <h1>Registration Form</h1>
+      </div>
+      <br />
+      <div>
+        <label>User id: </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+          type="text"
+          id="id"
+          name="id"
+        />
+      </div>
+      <br /><br />
+      <div>
+        <label>Password: </label>
+        &nbsp;&nbsp;&nbsp;<input
+          type="password"
+          name="password"
+          id="password"
+        />
+      </div>
+      <br /><br />
+      <div>
+        <label>Name: </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+          type="text"
+          id="name"
+          name="name"
+        />
+      </div>
+      <br /><br />
+      <div>
+        <label>Address: </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+          type="text"
+          id="address"
+          name="address"
+        />
+      </div>
+      <br /><br />
+      <div>
+        <label>Country: </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name="country" id="country">
+          <option>Please select a country</option>
+          <option>India</option>
+          <option>America</option>
+          <option>Canada</option>
+          <option>Finland</option>
+          <option>China</option>
+          <option>Japan</option>
+          <option>Germany</option>
+          <option>australia</option>
+          <option>Brazil</option>
+          <option>France</option>
+        </select>
+      </div>
+      <br /><br />
+      <div>
+        <label>Zip Code: </label>
+        &nbsp;&nbsp;<input type="text" id="code" name="code" />
+      </div>
+      <br /><br />
+      <div>
+        <label>Email: </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+          type="email"
+          name="email"
+          id="email"
+        />
+      </div>
+      <br /><br />
+      <div>
+        <label>Sex: </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+          type="radio"
+          name="gender"
+          id="male"
+        />Male <input type="radio" name="gender" id="female" />Female
+      </div>
+      <br /><br />
+      <div>
+        <label>Language: </label>
+        &nbsp;<input type="checkbox" name="language" id="english" />English
+        <input type="checkbox" name="language" id="non_english" />Non English
+      </div>
+      <br /><br />
+      <div>
+        <label>About: </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea
+          name="about"
+          id="about"
+        ></textarea>
+      </div>
+      <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit">submit</button>
+    </form>
+  </body>
+</html>
