@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>JavaScript</p>
+    <p>DOM Concepts</p>
+    <p>Frontend Development</p>
+
+    <button onclick="changeColor()">Change Color</button>
+
+    <script>
+      function changeColor() {
+        let paragraphs = document.getElementsByTagName("p");
+
+        for (let i = 0; i < paragraphs.length; i++) {
+          paragraphs[i].style.color = "tomato";
+          paragraphs[i].style.fontSize = "20px";
+          paragraphs[i].style.fontWeight = "700";
+        }
+      }
+    </script>
+  </body>
+</html>

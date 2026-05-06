@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>getElementById Example</title>
+  </head>
+  <body>
+    <h1 id="hey">Welcome</h1>
+
+    <button onclick="changeText()">Click Here</button>
+
+    <script>
+      function changeText() {
+        let title = document.getElementById("hey");
+
+        title.innerHTML = "Text Changed Successfully Sai";
+        title.style.color = "tomato";
+        title.style.fontSize = "100px";
+        title.style.fontWeight = "1000";
+      }
+    </script>
+  </body>
+</html>
