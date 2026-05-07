@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exam Registration Form</title>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>📝 Exam Registration Form</h1>
+      <form onsubmit="return validateForm();">
+        <!-- Hall Ticket Number -->
+        <div class="form-row">
+          <label for="hallticket">Hall Ticket Number:</label>
+          <input
+            type="text"
+            id="hallticket"
+            name="hallticket"
+            title="Hall Ticket Number"
+            placeholder="e.g. 21A91A0501 (10 alphanumeric)"
+          />
+          <span class="error-msg" id="hallticket-error"
+            >Must be exactly 10 alphanumeric characters.</span
+          >
+          <span class="success-msg" id="hallticket-ok"
+            >✔ Valid Hall Ticket Number</span
+          >
+        </div>
+
+        <!-- Full Name -->
+        <div class="form-row">
+          <label for="fullname">Full Name:</label>
+          <input
+            type="text"
+            id="fullname"
+            name="fullname"
+            title="Full Name"
+            placeholder="e.g. Sai Kiran"
+          />
+          <span class="error-msg" id="fullname-error"
+            >Name must contain only letters and spaces (min 2).</span
+          >
+          <span class="success-msg" id="fullname-ok">✔ Valid Name</span>
+        </div>
+
+        <!-- Date of Birth -->
+        <div class="form-row">
+          <label for="dob">Date of Birth:</label>
+          <input type="date" id="dob" name="dob" title="Date of Birth" />
+          <span class="error-msg" id="dob-error"
+            >Please select your date of birth.</span
+          >
+          <span class="success-msg" id="dob-ok">✔ Valid Date</span>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-row">
+          <label for="phone">Phone Number:</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            title="Phone Number"
+            placeholder="10 digit mobile number"
+          />
+          <span class="error-msg" id="phone-error"
+            >Phone must be exactly 10 digits.</span
+          >
+          <span class="success-msg" id="phone-ok">✔ Valid Phone Number</span>
+        </div>
+
+        <!-- Email -->
+        <div class="form-row">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            title="Email Address"
+            placeholder="e.g. student@gmail.com"
+          />
+          <span class="error-msg" id="email-error"
+            >Enter a valid email (e.g. abc@gmail.com).</span
+          >
+          <span class="success-msg" id="email-ok">✔ Valid Email</span>
+        </div>
+
+        <!-- Subject -->
+        <div class="form-row">
+          <label for="subject">Exam Subject:</label>
+          <select id="subject" name="subject" title="Exam Subject">
+            <option value="">-- Select Subject --</option>
+            <option value="maths">Mathematics</option>
+            <option value="physics">Physics</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="cs">Computer Science</option>
+            <option value="english">English</option>
+          </select>
+          <span class="error-msg" id="subject-error"
+            >Please select an exam subject.</span
+          >
+          <span class="success-msg" id="subject-ok">✔ Subject Selected</span>
+        </div>
+
+        <!-- Exam Center -->
+        <div class="form-row">
+          <label for="center">Exam Center:</label>
+          <select id="center" name="center" title="Exam Center">
+            <option value="">-- Select Center --</option>
+            <option value="hyd">Hyderabad</option>
+            <option value="vij">Vijayawada</option>
+            <option value="vis">Visakhapatnam</option>
+            <option value="del">Delhi</option>
+            <option value="mum">Mumbai</option>
+          </select>
+          <span class="error-msg" id="center-error"
+            >Please select an exam center.</span
+          >
+          <span class="success-msg" id="center-ok">✔ Center Selected</span>
+        </div>
+
+        <!-- Gender -->
+        <div class="form-row">
+          <label>Gender:</label>
+          <div class="radio-group">
+            <label for="male">
+              <input type="radio" name="gender" id="male" title="Male" /> Male
+            </label>
+            <label for="female">
+              <input type="radio" name="gender" id="female" title="Female" />
+              Female
+            </label>
+            <label for="other">
+              <input type="radio" name="gender" id="other" title="Other" />
+              Other
+            </label>
+          </div>
+          <span class="error-msg" id="gender-error"
+            >Please select your gender.</span
+          >
+        </div>
+
+        <!-- Address -->
+        <div class="form-row">
+          <label for="address">Address:</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            title="Address"
+            placeholder="Enter your address (min 5 characters)"
+          />
+          <span class="error-msg" id="address-error"
+            >Address must be at least 5 characters.</span
+          >
+          <span class="success-msg" id="address-ok">✔ Valid Address</span>
+        </div>
+
+        <!-- Remarks -->
+        <div class="form-row">
+          <label for="remarks">Remarks:</label>
+          <textarea
+            id="remarks"
+            name="remarks"
+            title="Remarks"
+            placeholder="Any additional info (min 2, max 100 characters)"
+            rows="3"
+          ></textarea>
+          <div class="char-count" id="remarks-count">0 / 100</div>
+          <span class="error-msg" id="remarks-error"
+            >Remarks must be between 2 and 100 characters.</span
+          >
+          <span class="success-msg" id="remarks-ok">✔ Valid Remarks</span>
+        </div>
+
+        <button type="submit">Submit Registration</button>
+      </form>
+    </div>
+
+    <script>
+      // --- Helper functions ---
+      function showValid(inputEl, errorId, okId) {
+        inputEl.classList.remove("invalid");
+        inputEl.classList.add("valid");
+        document.getElementById(errorId).style.display = "none";
+        if (okId) document.getElementById(okId).style.display = "block";
+      }
+
+      function showInvalid(inputEl, errorId, okId) {
+        inputEl.classList.remove("valid");
+        inputEl.classList.add("invalid");
+        document.getElementById(errorId).style.display = "block";
+        if (okId) document.getElementById(okId).style.display = "none";
+      }
+
+      // --- Real-time validations ---
+
+      // Hall Ticket
+      document
+        .getElementById("hallticket")
+        .addEventListener("input", function () {
+          let pattern = /^[a-zA-Z0-9]{10}$/;
+          if (pattern.test(this.value.trim())) {
+            showValid(this, "hallticket-error", "hallticket-ok");
+          } else {
+            showInvalid(this, "hallticket-error", "hallticket-ok");
+          }
+        });
+
+      // Full Name
+      document
+        .getElementById("fullname")
+        .addEventListener("input", function () {
+          let pattern = /^[A-Za-z ]{2,}$/;
+          if (pattern.test(this.value.trim())) {
+            showValid(this, "fullname-error", "fullname-ok");
+          } else {
+            showInvalid(this, "fullname-error", "fullname-ok");
+          }
+        });
+
+      // DOB
+      document.getElementById("dob").addEventListener("change", function () {
+        if (this.value) {
+          showValid(this, "dob-error", "dob-ok");
+        } else {
+          showInvalid(this, "dob-error", "dob-ok");
+        }
+      });
+
+      // Phone
+      document.getElementById("phone").addEventListener("input", function () {
+        let pattern = /^[0-9]{10}$/;
+        if (pattern.test(this.value.trim())) {
+          showValid(this, "phone-error", "phone-ok");
+        } else {
+          showInvalid(this, "phone-error", "phone-ok");
+        }
+      });
+
+      // Email
+      document.getElementById("email").addEventListener("input", function () {
+        let pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (pattern.test(this.value.trim())) {
+          showValid(this, "email-error", "email-ok");
+        } else {
+          showInvalid(this, "email-error", "email-ok");
+        }
+      });
+
+      // Subject
+      document
+        .getElementById("subject")
+        .addEventListener("change", function () {
+          if (this.value) {
+            showValid(this, "subject-error", "subject-ok");
+          } else {
+            showInvalid(this, "subject-error", "subject-ok");
+          }
+        });
+
+      // Center
+      document.getElementById("center").addEventListener("change", function () {
+        if (this.value) {
+          showValid(this, "center-error", "center-ok");
+        } else {
+          showInvalid(this, "center-error", "center-ok");
+        }
+      });
+
+      // Address
+      document.getElementById("address").addEventListener("input", function () {
+        let pattern = /^[a-zA-Z0-9\s,.'#-]{5,100}$/;
+        if (pattern.test(this.value.trim())) {
+          showValid(this, "address-error", "address-ok");
+        } else {
+          showInvalid(this, "address-error", "address-ok");
+        }
+      });
+
+      // Remarks + character counter
+      document.getElementById("remarks").addEventListener("input", function () {
+        let len = this.value.length;
+        document.getElementById("remarks-count").textContent = len + " / 100";
+        let pattern = /^.{2,100}$/;
+        if (pattern.test(this.value)) {
+          showValid(this, "remarks-error", "remarks-ok");
+        } else {
+          showInvalid(this, "remarks-error", "remarks-ok");
+        }
+      });
+
+      // --- Final submit validation ---
+      function validateForm() {
+        let valid = true;
+
+        let hallticket = document.getElementById("hallticket");
+        if (!/^[a-zA-Z0-9]{10}$/.test(hallticket.value.trim())) {
+          showInvalid(hallticket, "hallticket-error", "hallticket-ok");
+          valid = false;
+        }
+
+        let fullname = document.getElementById("fullname");
+        if (!/^[A-Za-z ]{2,}$/.test(fullname.value.trim())) {
+          showInvalid(fullname, "fullname-error", "fullname-ok");
+          valid = false;
+        }
+
+        let dob = document.getElementById("dob");
+        if (!dob.value) {
+          showInvalid(dob, "dob-error", "dob-ok");
+          valid = false;
+        }
+
+        let phone = document.getElementById("phone");
+        if (!/^[0-9]{10}$/.test(phone.value.trim())) {
+          showInvalid(phone, "phone-error", "phone-ok");
+          valid = false;
+        }
+
+        let email = document.getElementById("email");
+        if (
+          !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+            email.value.trim(),
+          )
+        ) {
+          showInvalid(email, "email-error", "email-ok");
+          valid = false;
+        }
+
+        let subject = document.getElementById("subject");
+        if (!subject.value) {
+          showInvalid(subject, "subject-error", "subject-ok");
+          valid = false;
+        }
+
+        let center = document.getElementById("center");
+        if (!center.value) {
+          showInvalid(center, "center-error", "center-ok");
+          valid = false;
+        }
+
+        let genderSelected = document.querySelector(
+          'input[name="gender"]:checked',
+        );
+        if (!genderSelected) {
+          document.getElementById("gender-error").style.display = "block";
+          valid = false;
+        } else {
+          document.getElementById("gender-error").style.display = "none";
+        }
+
+        let address = document.getElementById("address");
+        if (!/^[a-zA-Z0-9\s,.'#-]{5,100}$/.test(address.value.trim())) {
+          showInvalid(address, "address-error", "address-ok");
+          valid = false;
+        }
+
+        let remarks = document.getElementById("remarks");
+        if (!/^.{2,100}$/.test(remarks.value)) {
+          showInvalid(remarks, "remarks-error", "remarks-ok");
+          valid = false;
+        }
+
+        if (valid) {
+          alert("✅ Exam Registration Successful!");
+        }
+        return false; // prevent page reload
+      }
+    </script>
+  </body>
+</html>

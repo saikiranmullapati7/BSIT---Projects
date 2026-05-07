@@ -6,88 +6,7 @@
     <title>Document</title>
   </head>
   <body>
-    <script>
-      function validateForm() {
-        const userid = document.getElementById("id").value;
-        const password = document.getElementById("password").value;
-        const name = document.getElementById("name").value;
-        const address = document.getElementById("address").value;
-        const zipcode = document.getElementById("code").value;
-        const mail = document.getElementById("email").value;
-        const about = document.getElementById("about").value;
-
-        // userID
-
-        let useridpatt = /^[a-zA-Z0-9]{6,9}$/;
-        if (!useridpatt.test(userid)) {
-          alert("User id Required and must be of length 6 to 9");
-          return false;
-        }
-
-        // password
-
-        let passwordpatt =
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-        if (!passwordpatt.test(password)) {
-          alert("Password must be 8 characters @, A-Z, a-z, 0-9");
-          return false;
-        }
-
-        //name
-
-        let namepatt = /^[A-Z][a-z]{2}*$/;
-
-        if (!namepatt.test(name)) {
-          alert("Name should contain only letters Min 2");
-          return false;
-        }
-
-        // address
-
-        let addresspatt = /^[a-zA-Z0-9\s,.'#-]{1,100}$/;
-
-        if (!addresspatt.test(address)) {
-          alert(
-            "Please enter a valid address containing only alphanumeric characters, spaces, or .,#'-.",
-          );
-          return false;
-        }
-
-        // ZIPcode
-
-        let zipcodepatt = /^[0-9]{6}$/;
-        if (!zipcodepatt.test(zipcode)) {
-          alert("Zipcode only 6 digits only");
-          return false;
-        }
-
-        // mail
-
-        let mailpatt =
-          /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.(com|in|co)$/;
-        if (!mailpatt.test(mail)) {
-          alert("Email must be @ special char .(com|in|co)");
-          return false;
-        }
-
-        // about
-
-        let aboutpatt = /^\s*(\S+\s+){3,99}\S+\s*$/;
-
-        if (!aboutpatt.test(about)) {
-          alert(
-            "Please enter a valid about containing only text min 3 & max 100 words",
-          );
-          return false;
-        }
-
-        alert("Form submitted successfully");
-        return true;
-      }
-    </script>
-
-    <form method="get" onsubmit="return validateForm();">
+    <form onsubmit="return validateForm();">
       <div>
         <h1>Registration Form</h1>
       </div>
@@ -109,8 +28,8 @@
           type="password"
           name="password"
           id="password"
-          style="width: 300px"
           placeholder="Password must be 8 characters @, A-Z, a-z, 0-9"
+          style="width: 300px"
         />
       </div>
       <br /><br />
@@ -203,5 +122,85 @@
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit">submit</button>
     </form>
+    <script>
+      function validateForm() {
+        let userid = document.getElementById("id").value;
+        let password = document.getElementById("password").value;
+        let name = document.getElementById("name").value;
+        let address = document.getElementById("address").value;
+        let zipcode = document.getElementById("code").value;
+        let mail = document.getElementById("email").value;
+        let about = document.getElementById("about").value;
+
+        // userID
+
+        let useridpattern = /^[a-zA-Z0-9]{6,9}$/;
+        if (!useridpattern.test(userid)) {
+          alert("Required and must be of length 5 to 9");
+          return false;
+        }
+
+        // password
+
+        let passwordpattern =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+        if (!passwordpattern.test(password)) {
+          alert("Password must be 8 characters");
+          return false;
+        }
+
+        //name
+
+        let namepattern = /^[A-Z][a-z]*$/;
+
+        if (!namepattern.test(name)) {
+          alert("Name should contain only letters");
+          return false;
+        }
+
+        // address
+
+        let addresspattern = /^[a-zA-Z0-9\s,.'#-]{1,100}$/;
+
+        if (!addresspattern.test(address)) {
+          alert(
+            "Please enter a valid address containing only alphanumeric characters, spaces, or .,#'-.",
+          );
+          return false;
+        }
+
+        // ZIPcode
+
+        let zipcodepattern = /^[0-9]{6}$/;
+        if (!zipcodepattern.test(zipcode)) {
+          alert("Zipcode only 6 digits");
+          return false;
+        }
+
+        // mail
+
+        let mailpattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (!mailpattern.test(mail)) {
+          alert("Email must be @ special char");
+          return false;
+        }
+
+        // about
+
+        let aboutpattern = /^\s*(\S+\s+){3,99}\S+\s*$/;
+
+        if (!aboutpattern.test(about)) {
+          alert(
+            "Please enter a valid about containing only text min 3 & max 100 words",
+          );
+          return false;
+        }
+
+        alert("Form submitted successfully");
+        return true;
+      }
+    </script>
   </body>
 </html>

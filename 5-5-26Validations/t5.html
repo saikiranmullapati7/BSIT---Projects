@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Enrollment Form</title>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Student Enrollment Form</h1>
+      <form onsubmit="return validateForm();">
+        <div class="form-row">
+          <label for="rollno">Roll Number:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+            type="text"
+            id="rollno"
+            name="rollno"
+            title="Roll Number"
+            placeholder="e.g. 21A91A0501 (10 alphanumeric chars)"
+            style="width: 300px"
+          />
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="fullname">Full Name:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;<input
+            type="text"
+            id="fullname"
+            name="fullname"
+            title="Full Name"
+            placeholder="e.g. Sai Kiran (letters and spaces only)"
+            style="width: 300px"
+          />
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="dob">Date of Birth:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<input
+            type="date"
+            id="dob"
+            name="dob"
+            title="Date of Birth"
+          />
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="phone">Phone Number:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+            type="tel"
+            id="phone"
+            name="phone"
+            title="Phone Number"
+            placeholder="10 digit mobile number"
+            style="width: 300px"
+          />
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="email">Email:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+            type="email"
+            id="email"
+            name="email"
+            title="Email Address"
+            placeholder="e.g. student@gmail.com"
+            style="width: 300px"
+          />
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="branch">Branch:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<select
+            id="branch"
+            name="branch"
+            title="Branch"
+          >
+            <option value="">-- Select Branch --</option>
+            <option value="CSE">Computer Science (CSE)</option>
+            <option value="IT">Information Technology (IT)</option>
+            <option value="ECE">Electronics & Communication (ECE)</option>
+            <option value="EEE">Electrical Engineering (EEE)</option>
+            <option value="MECH">Mechanical Engineering (MECH)</option>
+            <option value="CIVIL">Civil Engineering (CIVIL)</option>
+          </select>
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="year">Year of Study:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select
+            id="year"
+            name="year"
+            title="Year of Study"
+          >
+            <option value="">-- Select Year --</option>
+            <option value="1">1st Year</option>
+            <option value="2">2nd Year</option>
+            <option value="3">3rd Year</option>
+            <option value="4">4th Year</option>
+          </select>
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label>Gender:</label>
+
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+            type="radio"
+            name="gender"
+            id="male"
+            title="Male"
+          />
+          Male
+
+          <input type="radio" name="gender" id="female" title="Female" />
+          Female
+
+          <input type="radio" name="gender" id="other" title="Other" />
+          Other
+        </div>
+        <br /><br />
+
+        <label>Subjects Enrolled:</label>
+
+        <input type="checkbox" id="maths" name="subjects" title="Mathematics" />
+        Mathematics
+
+        <input type="checkbox" id="physics" name="subjects" title="Physics" />
+        Physics
+
+        <input
+          type="checkbox"
+          id="chemistry"
+          name="subjects"
+          title="Chemistry"
+        />
+        Chemistry
+
+        <input
+          type="checkbox"
+          id="programming"
+          name="subjects"
+          title="Programming"
+        />
+        Programming
+
+        <br /><br />
+
+        <div class="form-row">
+          <label for="address">Address:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;<input
+            type="text"
+            id="address"
+            name="address"
+            title="Address"
+            placeholder="Enter your full address"
+            style="width: 300px"
+          />
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="remarks">Remarks:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<textarea
+            id="remarks"
+            name="remarks"
+            title="Remarks"
+            placeholder="Any additional info (min 2, max 100 characters)"
+            rows="3"
+            style="width: 300px"
+          ></textarea>
+        </div>
+        <br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit">
+          Enroll Now
+        </button>
+      </form>
+    </div>
+
+    <script>
+      function validateForm() {
+        let rollno = document.getElementById("rollno").value.trim();
+        let fullname = document.getElementById("fullname").value.trim();
+        let dob = document.getElementById("dob").value;
+        let phone = document.getElementById("phone").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let branch = document.getElementById("branch").value;
+        let year = document.getElementById("year").value;
+        let address = document.getElementById("address").value.trim();
+        let remarks = document.getElementById("remarks").value.trim();
+
+        // Roll Number: 10 alphanumeric characters
+        let rollpattern = /^[a-zA-Z0-9]{10}$/;
+        if (!rollpattern.test(rollno)) {
+          alert("Roll Number must be exactly 10 alphanumeric characters.");
+          return false;
+        }
+
+        // Full Name: letters and spaces only, min 2 chars
+        let namepattern = /^[A-Za-z ]{2,}$/;
+        if (!namepattern.test(fullname)) {
+          alert(
+            "Full Name must contain only letters and spaces (min 2 characters).",
+          );
+          return false;
+        }
+
+        // Date of Birth: required
+        if (!dob) {
+          alert("Please select your Date of Birth.");
+          return false;
+        }
+
+        // Phone: exactly 10 digits
+        let phonepattern = /^[0-9]{10}$/;
+        if (!phonepattern.test(phone)) {
+          alert("Phone Number must be exactly 10 digits.");
+          return false;
+        }
+
+        // Email
+        let emailpattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailpattern.test(email)) {
+          alert("Please enter a valid email address.");
+          return false;
+        }
+
+        // Branch
+        if (!branch) {
+          alert("Please select your Branch.");
+          return false;
+        }
+
+        // Year
+        if (!year) {
+          alert("Please select your Year of Study.");
+          return false;
+        }
+
+        // Gender
+        let genderSelected = document.querySelector(
+          'input[name="gender"]:checked',
+        );
+        if (!genderSelected) {
+          alert("Please select your Gender.");
+          return false;
+        }
+
+        // Subjects: at least one checkbox
+        let subjectsChecked = document.querySelectorAll(
+          'input[name="subjects"]:checked',
+        );
+        if (subjectsChecked.length === 0) {
+          alert("Please select at least one Subject.");
+          return false;
+        }
+
+        // Address: min 5 characters
+        let addresspattern = /^[a-zA-Z0-9\s,.'#-]{5,100}$/;
+        if (!addresspattern.test(address)) {
+          alert("Please enter a valid address (min 5 characters).");
+          return false;
+        }
+
+        // Remarks: min 2, max 100 characters
+        let remarkspattern = /^.{2,100}$/;
+        if (!remarkspattern.test(remarks)) {
+          alert("Remarks must be between 2 and 100 characters.");
+          return false;
+        }
+
+        alert("Enrollment Successful! Welcome aboard.");
+        return true;
+      }
+    </script>
+  </body>
+</html>
