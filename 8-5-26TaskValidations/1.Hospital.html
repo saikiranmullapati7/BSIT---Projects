@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Hospital Appointment Form</h1>
+      <form onsubmit="return validateForm();">
+        <div class="form-row">
+          <label for="fullname">Patient Name:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+            type="text"
+            id="patientname"
+            name="patientname"
+            title="Patient Name"
+            placeholder="Full name"
+            style="width: 300px"
+          />
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="dob">Patient ID:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;<input
+            type="text"
+            id="patientid"
+            name="PatientID"
+            title="patientid"
+            placeholder="e.g.PAT-00123"
+            style="width: 300px"
+          />
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="age">Age :</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+          <input type="number" placeholder="Years" min="0" max="120" />
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="age">Gender :</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="gender" id="male" />Male
+          <input type="radio" name="gender" id="female" />Female
+          <input type="radio" name="gender" id="other" />Other
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="phone">Phone Number:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+            type="tel"
+            id="phone"
+            name="phone"
+            title="Phone Number"
+            placeholder="+91 00000 00000"
+            style="width: 300px"
+          />
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="email">Email:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+            type="email"
+            id="email"
+            name="email"
+            title="Email Address"
+            placeholder="e.g. you@gmail.com"
+            style="width: 300px"
+          />
+        </div>
+        <br /><br />
+
+        <div>
+          <label for="">Doctor name :</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select>
+            <option value="" disabled selected>Select doctor</option>
+            <option>Dr.Anil Sharma --- Cardiology</option>
+            <option>Dr.Priya Reddy --- Neurology</option>
+            <option>Dr.Ramesh Kumar --- Orthopedics</option>
+            <option>Dr.Sneha Patel --- Dermatology</option>
+            <option>Dr.Vikram Nair --- General Medicine</option>
+          </select>
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="dob">Date of Birth:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="date" id="dob" name="dob" title="Date of Birth" />
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="dob">Appointment time :</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="time" name="time" min="09:00" max="17:00" />
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="remarks">Symptoms / reason for visit :</label>
+          &nbsp;&nbsp;&nbsp;<textarea
+            id="remarks"
+            name="remarks"
+            title="Remarks"
+            placeholder="Any additional info (min 2, max 100 characters)"
+            rows="3"
+            style="width: 300px"
+          ></textarea>
+        </div>
+        <br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit">
+          Confirm appointment
+        </button>
+      </form>
+    </div>
+    <script>
+      function validateForm() {
+        let patientnamepatt = document
+          .getElementById("patientname")
+          .value.trim();
+        let patientidpatt = document.getElementById("patientid").value.trim();
+        let phonenumberpatt = document.getElementById("phone").value.trim();
+        let emailpatt = document.getElementById("email").value.trim();
+        let symp_reaspatt = document.getElementById("remarks").value.trim();
+
+        // Patient Name
+        let patientnamepattern = /^[A-Za-z]+( [A-Za-z]+)*$/;
+        if (!patientnamepattern.test(patientnamepatt)) {
+          alert("Name should contain only alphabets (e.g. John Doe)");
+          return false;
+        }
+
+        // Patient ID
+        let patientidpattern = /^[A-Z]{3}-[0-9]{5}$/;
+        if (!patientidpattern.test(patientidpatt)) {
+          alert("Patient ID must be in format PAT-00123");
+          return false;
+        }
+
+        // Phone Number
+        let phonenumberpattern = /^[6-9][0-9]{9}$/;
+        if (!phonenumberpattern.test(phonenumberpatt)) {
+          alert("Mobile number must contain exactly 10 digits.");
+          return false;
+        }
+
+        // Email
+        let emailpattern =
+          /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.(com|in|co)$/;
+        if (!emailpattern.test(emailpatt)) {
+          alert("Enter a valid email (e.g. abc@gmail.com|com|in|co)");
+          return false;
+        }
+
+        // Symptoms
+        let Symptoms_reason_pattern = /^[A-Za-z0-9 .,]{10,}$/;
+        if (!Symptoms_reason_pattern.test(symp_reaspatt)) {
+          alert("Symptoms: Minimum 10 characters required");
+          return false;
+        }
+
+        alert("Patient form submitted successfully! ✅");
+        return false;
+      }
+    </script>
+  </body>
+</html>

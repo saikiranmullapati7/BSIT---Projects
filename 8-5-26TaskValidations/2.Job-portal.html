@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Job Portal Registration Form</h1>
+      <form onsubmit="return validateForm();">
+        <div class="form-row">
+          <label for="fullname">Full Name:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+            type="text"
+            id="fullname"
+            name="fullname"
+            title="Full Name"
+            placeholder="Full name"
+            style="width: 300px"
+          />
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="email">Email:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;<input
+            type="email"
+            id="email"
+            name="email"
+            title="Email Address"
+            placeholder="e.g. you@gmail.com"
+            style="width: 300px"
+          />
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="phone">Mobile Number:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<input
+            type="tel"
+            id="phone"
+            name="mobile"
+            title="Mobile Number"
+            placeholder="+91 00000 00000"
+            style="width: 300px"
+          />
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="dob">Date of Birth:</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;<input
+            type="date"
+            id="dob"
+            name="dob"
+            title="Date of Birth"
+          />
+        </div>
+        <br /><br />
+
+        <div class="form-row">
+          <label for="age">Gender :</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="gender" id="male" />Male
+          <input type="radio" name="gender" id="female" />Female
+          <input type="radio" name="gender" id="other" />Other
+        </div>
+        <br /><br />
+
+        <div>
+          <label for="">Qualification :</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<select
+            name="qualification"
+            id=""
+          >
+            <option>Select highest qualification</option>
+            <option value="">10th/SSC</option>
+            <option value="">12th/HSC</option>
+            <option value="">Diploma</option>
+            <option value="">
+              Bachelor's degree (B.A/B.Sc/B.Com/B.E/B.Tech)
+            </option>
+            <option value="">
+              Master's degree (M.A/M.Sc/M.Com/M.E/M.Tech)
+            </option>
+            <option value="">MBA</option>
+            <option value="">MCA</option>
+            <option value="">Phd</option>
+            <option value="">Other</option>
+          </select>
+        </div>
+        <br /><br />
+
+        <div>
+          <label>Skills :</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;<input
+            type="text"
+            name="skills"
+            id="skills"
+            style="width: 300px"
+          />
+        </div>
+        <br /><br />
+
+        <div>
+          <label>Experience :</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;<textarea
+            name="experience"
+            id="experience"
+            style="width: 300px"
+          ></textarea>
+        </div>
+        <br /><br />
+
+        <div>
+          <label>Password :</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+            type="password"
+            name="pwd"
+            id="pwd"
+            placeholder="Create a password"
+            style="width: 300px"
+          />
+        </div>
+        <br /><br />
+
+        <div>
+          <label>Confirm Password :</label>
+          &nbsp;&nbsp;<input
+            type="password"
+            name="cpwd"
+            id="cpwd"
+            placeholder="Re-enter password"
+            style="width: 300px"
+          />
+        </div>
+        <br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit">
+          submit
+        </button>
+      </form>
+    </div>
+    <script>
+      function validateForm() {
+        let fullname = document.getElementById("fullname").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let phone = document.getElementById("phone").value.trim();
+        let dob = document.getElementById("dob").value;
+        let skills = document.getElementById("skills").value.trim();
+        let experience = document.getElementById("experience").value.trim();
+        let pwd = document.getElementById("pwd").value;
+        let cpwd = document.getElementById("cpwd").value;
+        let gender = document.querySelector('input[name="gender"]:checked');
+
+        // Full Name
+        let namePattern = /^[A-Za-z]+( [A-Za-z]+)*$/;
+        if (!namePattern.test(fullname)) {
+          alert("Name fields should allow only alphabets.");
+          return false;
+        }
+
+        // Email
+        let emailPattern =
+          /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.(com|in|co)$/;
+        if (!emailPattern.test(email)) {
+          alert("Email: Enter a valid email (e.g. you@gmail.com|com|in|co)");
+          return false;
+        }
+
+        // Mobile Number
+        let phonePattern = /^[6-9][0-9]{9}$/;
+        if (!phonePattern.test(phone)) {
+          alert("Mobile Number: Must be 10 digits starting with 6, 7, 8 or 9");
+          return false;
+        }
+
+        // Date of Birth
+        let dobDate = new Date(dob);
+        let today = new Date();
+        let age = today.getFullYear() - dobDate.getFullYear();
+        let monthDiff = today.getMonth() - dobDate.getMonth();
+        if (
+          monthDiff < 0 ||
+          (monthDiff === 0 && today.getDate() < dobDate.getDate())
+        ) {
+          age--;
+        }
+        if (age < 18) {
+          alert("You must be at least 18 years old to apply!");
+          return false;
+        }
+
+        // Gender
+        if (!gender) {
+          alert("Gender: Please select your gender");
+          return false;
+        }
+
+        // Skills
+        if (skills === "") {
+          alert("Skills: Please enter your skills");
+          return false;
+        }
+
+        // Experience
+        if (experience.length < 10) {
+          alert("Experience: Please enter at least 10 characters");
+          return false;
+        }
+
+        // Password
+        let pwdPattern = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/;
+        if (!pwdPattern.test(pwd)) {
+          alert(
+            "Password must be at least 8 characters with 1 uppercase, 1 number, and 1 special character (!@#$%^&*)",
+          );
+          return false;
+        }
+
+        // Confirm Password
+        if (pwd !== cpwd) {
+          alert("Confirm Password: Passwords do not match!");
+          return false;
+        }
+
+        alert("Registration Successful! ✅");
+        return false;
+      }
+    </script>
+  </body>
+</html>
