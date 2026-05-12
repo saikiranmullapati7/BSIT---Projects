@@ -101,12 +101,16 @@
           <label>Skills :</label>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;<input
-            type="text"
-            name="skills"
-            id="skills"
-            style="width: 300px"
-          />
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <select name="" id="">
+            <option value="">Select experience</option>
+            <option value="">Fresher (0 years)</option>
+            <option value="">Less than 1 year</option>
+            <option value="">1-2 years</option>
+            <option value="">3-5 years</option>
+            <option value="">6-9 years</option>
+            <option value="">10+ years</option>
+          </select>
         </div>
         <br /><br />
 
@@ -159,7 +163,6 @@
         let email = document.getElementById("email").value.trim();
         let phone = document.getElementById("phone").value.trim();
         let dob = document.getElementById("dob").value;
-        let skills = document.getElementById("skills").value.trim();
         let experience = document.getElementById("experience").value.trim();
         let pwd = document.getElementById("pwd").value;
         let cpwd = document.getElementById("cpwd").value;
@@ -206,12 +209,6 @@
         // Gender
         if (!gender) {
           alert("Gender: Please select your gender");
-          return false;
-        }
-
-        // Skills
-        if (skills === "") {
-          alert("Skills: Please enter your skills");
           return false;
         }
 

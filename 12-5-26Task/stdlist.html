@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduRegister | Student List</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        color: #333;
+      }
+
+      nav {
+        background: #003366;
+        padding: 14px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo {
+        color: white;
+        font-size: 1.3rem;
+        font-weight: bold;
+      }
+      .logo span {
+        color: #f5a623;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.95rem;
+        padding: 6px 12px;
+        border-radius: 4px;
+        transition: background 0.2s;
+      }
+      nav ul li a:hover,
+      nav ul li a.active {
+        background: #f5a623;
+        color: #003366;
+      }
+
+      .page-header {
+        background: #003366;
+        color: white;
+        text-align: center;
+        padding: 30px 20px;
+      }
+      .page-header h1 {
+        font-size: 1.8rem;
+      }
+      .page-header p {
+        color: #ccc;
+        margin-top: 6px;
+        font-size: 0.95rem;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 0 20px;
+      }
+
+      .toolbar {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin-bottom: 20px;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .toolbar input,
+      .toolbar select {
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        outline: none;
+      }
+      .toolbar input {
+        flex: 1;
+        min-width: 180px;
+      }
+      .toolbar input:focus,
+      .toolbar select:focus {
+        border-color: #003366;
+      }
+
+      .btn {
+        padding: 8px 18px;
+        border: none;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .btn-primary {
+        background: #003366;
+        color: white;
+      }
+      .btn-primary:hover {
+        background: #002244;
+      }
+      .btn-danger {
+        background: #dc3545;
+        color: white;
+      }
+      .btn-danger:hover {
+        background: #b02a37;
+      }
+      .btn-gold {
+        background: #f5a623;
+        color: #003366;
+      }
+      .btn-gold:hover {
+        background: #e09520;
+      }
+
+      .summary {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+      .summary-box {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 14px 20px;
+        text-align: center;
+        flex: 1;
+        min-width: 130px;
+      }
+      .summary-box .num {
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: #003366;
+      }
+      .summary-box .lbl {
+        font-size: 0.8rem;
+        color: #777;
+        margin-top: 4px;
+      }
+
+      .table-box {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 24px;
+        margin-bottom: 30px;
+      }
+      .table-box h2 {
+        color: #003366;
+        margin-bottom: 16px;
+        font-size: 1.1rem;
+        border-bottom: 2px solid #f5a623;
+        padding-bottom: 8px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+      }
+      table th {
+        background: #003366;
+        color: white;
+        padding: 10px 12px;
+        text-align: left;
+      }
+      table td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #eee;
+        vertical-align: middle;
+      }
+      table tr:hover {
+        background: #f9f9f9;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.78rem;
+        font-weight: bold;
+        background: #e0f0ff;
+        color: #003366;
+      }
+
+      .no-data {
+        text-align: center;
+        color: #999;
+        padding: 30px;
+        font-size: 0.95rem;
+      }
+
+      .delete-btn {
+        background: #dc3545;
+        color: white;
+        border: none;
+        padding: 5px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.8rem;
+      }
+      .delete-btn:hover {
+        background: #b02a37;
+      }
+
+      footer {
+        background: #002244;
+        color: #aaa;
+        text-align: center;
+        padding: 16px;
+        font-size: 0.85rem;
+      }
+      footer span {
+        color: #f5a623;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">Edu<span>Register</span></div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="registration.html">Register</a></li>
+        <li><a href="students.html" class="active">Students</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="page-header">
+      <h1>Student List</h1>
+      <p>All registered students are listed below.</p>
+    </div>
+
+    <div class="container">
+      <div class="summary">
+        <div class="summary-box">
+          <div class="num" id="totalCount">0</div>
+          <div class="lbl">Total Students</div>
+        </div>
+        <div class="summary-box">
+          <div class="num" id="courseCount">0</div>
+          <div class="lbl">Courses</div>
+        </div>
+        <div class="summary-box">
+          <div class="num" id="latestStudent">—</div>
+          <div class="lbl">Latest Registered</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="🔍 Search by name or email..."
+          oninput="filterTable()"
+        />
+        <select id="courseFilter" onchange="filterTable()">
+          <option value="">All Courses</option>
+          <option value="BSIT">BSIT</option>
+          <option value="BCA">BCA</option>
+          <option value="BSC">BSC</option>
+          <option value="BBA">BBA</option>
+          <option value="BCOM">B.Com</option>
+          <option value="MCA">MCA</option>
+        </select>
+        <button
+          class="btn btn-gold"
+          onclick="window.location.href = 'registration.html'"
+        >
+          + Add Student
+        </button>
+        <button class="btn btn-danger" onclick="clearAllStudents()">
+          Clear All
+        </button>
+      </div>
+
+      <div class="table-box">
+        <h2>📋 Registered Students</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Student Name</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Course</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="studentTableBody">
+            <tr>
+              <td colspan="6" class="no-data">
+                No students registered yet.
+                <a href="registration.html">Register here</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 <span>EduRegister</span>. All rights reserved.</p>
+    </footer>
+
+    <script>
+      let students = [
+        {
+          name: "Ravi Kumar",
+          email: "ravi@gmail.com",
+          mobile: "9876543210",
+          course: "BSIT",
+        },
+        {
+          name: "Priya Sharma",
+          email: "priya@gmail.com",
+          mobile: "9123456780",
+          course: "BCA",
+        },
+        {
+          name: "Anil Reddy",
+          email: "anil@gmail.com",
+          mobile: "9988776655",
+          course: "MCA",
+        },
+        {
+          name: "Sneha Patel",
+          email: "sneha@gmail.com",
+          mobile: "9012345678",
+          course: "BBA",
+        },
+        {
+          name: "Kiran Rao",
+          email: "kiran@gmail.com",
+          mobile: "9345678901",
+          course: "BSIT",
+        },
+      ];
+
+      window.onload = function () {
+        const saved = localStorage.getItem("eduStudents");
+        if (saved) {
+          const extra = JSON.parse(saved);
+          students = students.concat(extra);
+        }
+        renderTable(students);
+        updateSummary(students);
+      };
+
+      function renderTable(data) {
+        const tbody = document.getElementById("studentTableBody");
+        tbody.innerHTML = "";
+
+        if (data.length === 0) {
+          tbody.innerHTML =
+            '<tr><td colspan="6" class="no-data">No students found.</td></tr>';
+          return;
+        }
+
+        data.forEach((s, index) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${s.name}</td>
+          <td>${s.email}</td>
+          <td>${s.mobile}</td>
+          <td><span class="badge">${s.course}</span></td>
+          <td><button class="delete-btn" onclick="deleteStudent(${index})">Delete</button></td>
+        `;
+          tbody.appendChild(row);
+        });
+      }
+
+      function updateSummary(data) {
+        document.getElementById("totalCount").textContent = data.length;
+        const courses = [...new Set(data.map((s) => s.course))];
+        document.getElementById("courseCount").textContent = courses.length;
+        const latest =
+          data.length > 0 ? data[data.length - 1].name.split(" ")[0] : "—";
+        document.getElementById("latestStudent").textContent = latest;
+      }
+
+      function filterTable() {
+        const search = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const course = document.getElementById("courseFilter").value;
+
+        const filtered = students.filter((s) => {
+          const matchSearch =
+            s.name.toLowerCase().includes(search) ||
+            s.email.toLowerCase().includes(search);
+          const matchCourse = course === "" || s.course === course;
+          return matchSearch && matchCourse;
+        });
+
+        renderTable(filtered);
+        updateSummary(filtered);
+      }
+
+      function deleteStudent(index) {
+        if (confirm("Are you sure you want to delete this student?")) {
+          students.splice(index, 1);
+          renderTable(students);
+          updateSummary(students);
+        }
+      }
+
+      function clearAllStudents() {
+        if (confirm("Are you sure you want to clear ALL students?")) {
+          students = [];
+          localStorage.removeItem("eduStudents");
+          renderTable(students);
+          updateSummary(students);
+        }
+      }
+    </script>
+  </body>
+</html>

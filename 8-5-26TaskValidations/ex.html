@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hospital Appointment Form</title>
+  </head>
+  <body>
+    <div>
+      <h1>Hospital Appointment Form</h1>
+      <form onsubmit="return validateForm();">
+        <div>
+          <label for="patientname">Patient Name:</label><br />
+          <input
+            type="text"
+            id="patientname"
+            name="patientname"
+            placeholder="Full name"
+          />
+          <span id="err-patientname" style="color: red"></span>
+        </div>
+        <br />
+
+        <div>
+          <label for="patientid">Patient ID:</label><br />
+          <input
+            type="text"
+            id="patientid"
+            name="PatientID"
+            placeholder="e.g. PAT-00123"
+          />
+          <span id="err-patientid" style="color: red"></span>
+        </div>
+        <br />
+
+        <div>
+          <label for="age">Age:</label><br />
+          <input
+            type="number"
+            id="age"
+            name="age"
+            placeholder="Years"
+            min="0"
+            max="120"
+          />
+          <span id="err-age" style="color: red"></span>
+        </div>
+        <br />
+
+        <div>
+          <label>Gender:</label><br />
+          <input type="radio" name="gender" id="male" value="male" />
+          <label for="male">Male</label>
+          <input type="radio" name="gender" id="female" value="female" />
+          <label for="female">Female</label>
+          <input type="radio" name="gender" id="other" value="other" />
+          <label for="other">Other</label>
+          <span id="err-gender" style="color: red"></span>
+        </div>
+        <br />
+
+        <div>
+          <label for="phone">Phone Number:</label><br />
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="+91 00000 00000"
+          />
+          <span id="err-phone" style="color: red"></span>
+        </div>
+        <br />
+
+        <div>
+          <label for="email">Email:</label><br />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="e.g. you@gmail.com"
+          />
+          <span id="err-email" style="color: red"></span>
+        </div>
+        <br />
+
+        <div>
+          <label for="doctor">Doctor Name:</label><br />
+          <select id="doctor" name="doctor">
+            <option value="" disabled selected>Select doctor</option>
+            <option value="anil">Dr. Anil Sharma --- Cardiology</option>
+            <option value="priya">Dr. Priya Reddy --- Neurology</option>
+            <option value="ramesh">Dr. Ramesh Kumar --- Orthopedics</option>
+            <option value="sneha">Dr. Sneha Patel --- Dermatology</option>
+            <option value="vikram">Dr. Vikram Nair --- General Medicine</option>
+          </select>
+          <span id="err-doctor" style="color: red"></span>
+        </div>
+        <br />
+
+        <div>
+          <label for="dob">Date of Birth:</label><br />
+          <input type="date" id="dob" name="dob" />
+          <span id="err-dob" style="color: red"></span>
+        </div>
+        <br />
+
+        <div>
+          <label for="appttime">Appointment Time:</label><br />
+          <input
+            type="time"
+            id="appttime"
+            name="time"
+            min="09:00"
+            max="17:00"
+          />
+          <span id="err-appttime" style="color: red"></span>
+        </div>
+        <br />
+
+        <div>
+          <label for="remarks">Symptoms / Reason for Visit:</label><br />
+          <textarea
+            id="remarks"
+            name="remarks"
+            placeholder="Any additional info (min 10, max 100 characters)"
+            rows="3"
+            cols="40"
+          ></textarea>
+          <span id="err-remarks" style="color: red"></span>
+        </div>
+        <br />
+
+        <button type="submit">Confirm Appointment</button>
+      </form>
+    </div>
+
+    <script>
+      function clearErrors() {
+        const ids = [
+          "patientname",
+          "patientid",
+          "age",
+          "gender",
+          "phone",
+          "email",
+          "doctor",
+          "dob",
+          "appttime",
+          "remarks",
+        ];
+        ids.forEach((id) => {
+          const el = document.getElementById("err-" + id);
+          if (el) el.textContent = "";
+        });
+      }
+
+      function showError(id, msg) {
+        const el = document.getElementById("err-" + id);
+        if (el) el.textContent = " \u2190 " + msg;
+      }
+
+      function validateForm() {
+        clearErrors();
+        let valid = true;
+        let alertMessages = [];
+
+        // 1. Patient Name
+        const patientname = document.getElementById("patientname").value.trim();
+        const namePattern = /^[A-Za-z]+( [A-Za-z]+)*$/;
+        if (!patientname) {
+          const msg = "Patient name is required.";
+          showError("patientname", msg);
+          alertMessages.push("• Patient Name: " + msg);
+          valid = false;
+        } else if (!namePattern.test(patientname)) {
+          const msg = "Name should contain only alphabets (e.g. John Doe).";
+          showError("patientname", msg);
+          alertMessages.push("• Patient Name: " + msg);
+          valid = false;
+        }
+
+        // 2. Patient ID
+        const patientid = document.getElementById("patientid").value.trim();
+        const idPattern = /^[A-Z]{3}-[0-9]{5}$/;
+        if (!patientid) {
+          const msg = "Patient ID is required.";
+          showError("patientid", msg);
+          alertMessages.push("• Patient ID: " + msg);
+          valid = false;
+        } else if (!idPattern.test(patientid)) {
+          const msg =
+            "Patient ID must be in format PAT-00123 (3 uppercase letters, dash, 5 digits).";
+          showError("patientid", msg);
+          alertMessages.push("• Patient ID: " + msg);
+          valid = false;
+        }
+
+        // 3. Age
+        const ageVal = document.getElementById("age").value.trim();
+        if (!ageVal) {
+          const msg = "Age is required.";
+          showError("age", msg);
+          alertMessages.push("• Age: " + msg);
+          valid = false;
+        } else {
+          const age = parseInt(ageVal);
+          if (isNaN(age) || age < 0 || age > 120) {
+            const msg = "Age must be between 0 and 120.";
+            showError("age", msg);
+            alertMessages.push("• Age: " + msg);
+            valid = false;
+          }
+        }
+
+        // 4. Gender
+        const genderSelected = document.querySelector(
+          'input[name="gender"]:checked',
+        );
+        if (!genderSelected) {
+          const msg = "Please select a gender.";
+          showError("gender", msg);
+          alertMessages.push("• Gender: " + msg);
+          valid = false;
+        }
+
+        // 5. Phone Number
+        const phone = document.getElementById("phone").value.trim();
+        const phonePattern = /^[6-9][0-9]{9}$/;
+        if (!phone) {
+          const msg = "Phone number is required.";
+          showError("phone", msg);
+          alertMessages.push("• Phone Number: " + msg);
+          valid = false;
+        } else if (!phonePattern.test(phone)) {
+          const msg =
+            "Enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.";
+          showError("phone", msg);
+          alertMessages.push("• Phone Number: " + msg);
+          valid = false;
+        }
+
+        // 6. Email
+        const email = document.getElementById("email").value.trim();
+        const emailPattern =
+          /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.(com|in|co)$/;
+        if (!email) {
+          const msg = "Email is required.";
+          showError("email", msg);
+          alertMessages.push("• Email: " + msg);
+          valid = false;
+        } else if (!emailPattern.test(email)) {
+          const msg =
+            "Enter a valid email ending in .com, .in, or .co (e.g. abc@gmail.com).";
+          showError("email", msg);
+          alertMessages.push("• Email: " + msg);
+          valid = false;
+        }
+
+        // 7. Doctor
+        const doctor = document.getElementById("doctor").value;
+        if (!doctor) {
+          const msg = "Please select a doctor.";
+          showError("doctor", msg);
+          alertMessages.push("• Doctor: " + msg);
+          valid = false;
+        }
+
+        // 8. Date of Birth
+        const dob = document.getElementById("dob").value;
+        if (!dob) {
+          const msg = "Date of birth is required.";
+          showError("dob", msg);
+          alertMessages.push("• Date of Birth: " + msg);
+          valid = false;
+        } else {
+          const dobDate = new Date(dob);
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          if (dobDate >= today) {
+            const msg = "Date of birth must be a past date.";
+            showError("dob", msg);
+            alertMessages.push("• Date of Birth: " + msg);
+            valid = false;
+          }
+        }
+
+        // 9. Appointment Time
+        const appttime = document.getElementById("appttime").value;
+        if (!appttime) {
+          const msg = "Appointment time is required.";
+          showError("appttime", msg);
+          alertMessages.push("• Appointment Time: " + msg);
+          valid = false;
+        } else {
+          const [h, m] = appttime.split(":").map(Number);
+          const totalMins = h * 60 + m;
+          if (totalMins < 9 * 60 || totalMins > 17 * 60) {
+            const msg =
+              "Appointment time must be between 09:00 AM and 05:00 PM.";
+            showError("appttime", msg);
+            alertMessages.push("• Appointment Time: " + msg);
+            valid = false;
+          }
+        }
+
+        // 10. Symptoms / Reason
+        const remarks = document.getElementById("remarks").value.trim();
+        const remarksPattern = /^[A-Za-z0-9 .,]{10,100}$/;
+        if (!remarks) {
+          const msg = "Symptoms / reason for visit is required.";
+          showError("remarks", msg);
+          alertMessages.push("• Symptoms: " + msg);
+          valid = false;
+        } else if (remarks.length < 10) {
+          const msg = "Minimum 10 characters required.";
+          showError("remarks", msg);
+          alertMessages.push("• Symptoms: " + msg);
+          valid = false;
+        } else if (remarks.length > 100) {
+          const msg = "Maximum 100 characters allowed.";
+          showError("remarks", msg);
+          alertMessages.push("• Symptoms: " + msg);
+          valid = false;
+        } else if (!remarksPattern.test(remarks)) {
+          const msg =
+            "Only letters, numbers, spaces, commas, and periods are allowed.";
+          showError("remarks", msg);
+          alertMessages.push("• Symptoms: " + msg);
+          valid = false;
+        }
+
+        // Show all errors in one alert box
+        if (!valid) {
+          alert(
+            "❌ Please fix the following errors:\n\n" +
+              alertMessages.join("\n"),
+          );
+        } else {
+          alert("✅ Patient appointment form submitted successfully!");
+        }
+
+        return false;
+      }
+    </script>
+  </body>
+</html>

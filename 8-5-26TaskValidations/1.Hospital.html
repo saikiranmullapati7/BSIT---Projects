@@ -145,55 +145,118 @@
         </button>
       </form>
     </div>
-    <script>
-      function validateForm() {
-        let patientnamepatt = document
-          .getElementById("patientname")
-          .value.trim();
-        let patientidpatt = document.getElementById("patientid").value.trim();
-        let phonenumberpatt = document.getElementById("phone").value.trim();
-        let emailpatt = document.getElementById("email").value.trim();
-        let symp_reaspatt = document.getElementById("remarks").value.trim();
+    <div id="errorBox" style="color: red; margin-bottom: 15px">
+      <script>
+        function validateForm() {
+          let errors = [];
 
-        // Patient Name
-        let patientnamepattern = /^[A-Za-z]+( [A-Za-z]+)*$/;
-        if (!patientnamepattern.test(patientnamepatt)) {
-          alert("Name should contain only alphabets (e.g. John Doe)");
-          return false;
+          let patientnamepatt = document
+            .getElementById("patientname")
+            .value.trim();
+          let patientidpatt = document.getElementById("patientid").value.trim();
+          let agepatt = document.getElementById("age").value.trim();
+          let phonenumberpatt = document.getElementById("phone").value.trim();
+          let emailpatt = document.getElementById("email").value.trim();
+          let doctorpatt = document.getElementById("doctor").value;
+          let dobpatt = document.getElementById("dob").value;
+          let appttimepatt = document.getElementById("appttime").value;
+          let symp_reaspatt = document.getElementById("remarks").value.trim();
+
+          let patientnamepattern = /^[A-Za-z]+( [A-Za-z]+)*$/;
+          if (!patientnamepatt) {
+            errors.push("Patient Name is required.");
+          } else if (!patientnamepattern.test(patientnamepatt)) {
+            errors.push("Name should contain only alphabets.");
+          }
+
+          let patientidpattern = /^[A-Z]{3}-[0-9]{5}$/;
+          if (!patientidpatt) {
+            errors.push("Patient ID is required.");
+          } else if (!patientidpattern.test(patientidpatt)) {
+            errors.push("Patient ID must be in format PAT-00123.");
+          }
+
+          if (!agepatt) {
+            errors.push("Age is required.");
+          } else {
+            let age = parseInt(agepatt);
+            if (isNaN(age) || age < 0 || age > 120) {
+              errors.push("Age must be between 0 and 120.");
+            }
+          }
+
+          if (!document.querySelector('input[name="gender"]:checked')) {
+            errors.push("Please select a gender.");
+          }
+
+          let phonenumberpattern = /^[6-9][0-9]{9}$/;
+          if (!phonenumberpatt) {
+            errors.push("Phone number is required.");
+          } else if (!phonenumberpattern.test(phonenumberpatt)) {
+            errors.push(
+              "Mobile number must be 10 digits and start with 6, 7, 8 or 9.",
+            );
+          }
+
+          let emailpattern =
+            /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.(com|in|co)$/;
+          if (!emailpatt) {
+            errors.push("Email is required.");
+          } else if (!emailpattern.test(emailpatt)) {
+            errors.push("Enter a valid email.");
+          }
+
+          if (!doctorpatt) {
+            errors.push("Please select a doctor.");
+          }
+
+          if (!dobpatt) {
+            errors.push("Date of Birth is required.");
+          } else {
+            let dobDate = new Date(dobpatt);
+            let today = new Date();
+            today.setHours(0, 0, 0, 0);
+            if (dobDate >= today) {
+              errors.push("Date of Birth must be a past date.");
+            }
+          }
+
+          if (!appttimepatt) {
+            errors.push("Appointment time is required.");
+          } else {
+            let [h, m] = appttimepatt.split(":").map(Number);
+            let totalMins = h * 60 + m;
+            if (totalMins < 9 * 60 || totalMins > 17 * 60) {
+              errors.push(
+                "Appointment time must be between 09:00 AM and 05:00 PM.",
+              );
+            }
+          }
+
+          let Symptoms_reason_pattern = /^[A-Za-z0-9 .,]{10,100}$/;
+          if (!symp_reaspatt) {
+            errors.push("Symptoms / Reason for visit is required.");
+          } else if (symp_reaspatt.length < 10 || symp_reaspatt.length > 100) {
+            errors.push("Symptoms must be between 10 and 100 characters.");
+          } else if (!Symptoms_reason_pattern.test(symp_reaspatt)) {
+            errors.push(
+              "Symptoms can contain only letters, numbers, spaces, commas and periods.",
+            );
+          }
+
+          let errorBox = document.getElementById("errorBox");
+          if (errors.length > 0) {
+            errorBox.innerHTML = errors
+              .map((err) => "<p>" + err + "</p>")
+              .join("");
+            return false;
+          } else {
+            errorBox.innerHTML =
+              "<p style='color:green;'>Patient form submitted successfully! ✅</p>";
+            return false;
+          }
         }
-
-        // Patient ID
-        let patientidpattern = /^[A-Z]{3}-[0-9]{5}$/;
-        if (!patientidpattern.test(patientidpatt)) {
-          alert("Patient ID must be in format PAT-00123");
-          return false;
-        }
-
-        // Phone Number
-        let phonenumberpattern = /^[6-9][0-9]{9}$/;
-        if (!phonenumberpattern.test(phonenumberpatt)) {
-          alert("Mobile number must contain exactly 10 digits.");
-          return false;
-        }
-
-        // Email
-        let emailpattern =
-          /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.(com|in|co)$/;
-        if (!emailpattern.test(emailpatt)) {
-          alert("Enter a valid email (e.g. abc@gmail.com|com|in|co)");
-          return false;
-        }
-
-        // Symptoms
-        let Symptoms_reason_pattern = /^[A-Za-z0-9 .,]{10,}$/;
-        if (!Symptoms_reason_pattern.test(symp_reaspatt)) {
-          alert("Symptoms: Minimum 10 characters required");
-          return false;
-        }
-
-        alert("Patient form submitted successfully! ✅");
-        return false;
-      }
-    </script>
+      </script>
+    </div>
   </body>
 </html>
