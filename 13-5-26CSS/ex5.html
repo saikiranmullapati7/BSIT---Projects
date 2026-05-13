@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All 5 CSS Selectors</title>
+    <style>
+      /* 1. Universal Selector — applies to every element */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* 2. Element Selector — targets all <body> and <h2> tags */
+      body {
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+        padding: 30px;
+      }
+
+      h2 {
+        color: gray;
+        margin-bottom: 8px;
+      }
+
+      /* 3. Class Selector — targets elements with class="myClass" */
+      .myClass {
+        color: red;
+        font-size: 18px;
+      }
+
+      /* 4. ID Selector — targets element with id="myId" */
+      #myId {
+        color: green;
+        font-size: 18px;
+      }
+
+      /* 5. Group Selector — targets h1 and p together */
+      h1,
+      p {
+        color: purple;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Universal Selector Result -->
+    <h2>1. Universal Selector ( * )</h2>
+    <p style="color: #555">
+      margin: 0 and padding: 0 applied to ALL elements on this page.
+    </p>
+
+    <br />
+
+    <!-- Element Selector Result -->
+    <h2>2. Element Selector ( h2 )</h2>
+    <p style="color: #555">
+      All h2 tags above are styled gray by the element selector.
+    </p>
+
+    <br />
+
+    <!-- Class Selector Result -->
+    <h2>3. Class Selector ( .myClass )</h2>
+    <p class="myClass">I have class="myClass" — I am Red.</p>
+    <p class="myClass">I also have class="myClass" — I am also Red.</p>
+
+    <br />
+
+    <!-- ID Selector Result -->
+    <h2>4. ID Selector ( #myId )</h2>
+    <p id="myId">I have id="myId" — I am Green.</p>
+
+    <br />
+
+    <!-- Group Selector Result -->
+    <h2>5. Group Selector ( h1, p )</h2>
+    <h1>I am h1 — Purple by Group Selector.</h1>
+    <p>I am p — also Purple by Group Selector.</p>
+  </body>
+</html>
