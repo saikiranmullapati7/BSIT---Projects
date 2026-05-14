@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 40px;
+      }
+
+      h1 {
+        color: skyblue;
+        font-size: 2rem;
+      }
+
+      p {
+        color: #555555;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .highlight {
+        background-color: #fff3cd;
+        padding: 10px;
+        border-left: 4px solid #ffc107;
+        border-right: 4px solid #ffc107;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: 15px;
+      }
+
+      .btn:hover {
+        background-color: #0056b3;
+      }
+
+      #main-heading {
+        color: blue;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 8px;
+      }
+
+      #intro {
+        max-width: 500px;
+      }
+
+      #click-btn {
+        background-color: #28a745;
+      }
+
+      #click-btn:hover {
+        background-color: #1e7e34;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="main-heading">Welcome BSIT</h1>
+
+    <!-- ID + class selector on paragraph -->
+    <p id="intro" class="highlight">
+      BSIT Software Services Private Limited is a private, non-government
+      software development and technology services company headquartered in
+      Hyderabad, Telangana, India. Founded in 2015 and legally incorporated in
+      February 2017, the company specializes in custom digital transformation,
+      web application development, and mobile application services.
+    </p>
+
+    <!-- Class + ID selector on button -->
+    <button class="btn" id="click-btn" onclick="alert('Button clicked!')">
+      Click Me
+    </button>
+  </body>
+</html>

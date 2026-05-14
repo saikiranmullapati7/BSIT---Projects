@@ -17,6 +17,16 @@
         color: #333;
       }
 
+      .page-header {
+      background: #003366;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+    .page-header h1 { font-size: 1.8rem; }
+    .page-header p { color: #ccc; margin-top: 6px; font-size: 0.95rem; }
+
+
       /* NAV */
       nav {
         background: #003366;
@@ -45,6 +55,7 @@
         padding: 6px 12px;
         border-radius: 4px;
         transition: background 0.2s;
+
       }
       nav ul li a:hover {
         background: #f5a623;
@@ -73,7 +84,7 @@
       .btn {
         display: inline-block;
         padding: 10px 24px;
-        background: #f5a623;
+        background: orange;
         color: #003366;
         font-weight: bold;
         text-decoration: none;
@@ -200,11 +211,12 @@
       </ul>
     </nav>
     <section>
-      <h1>Welcome to <span>Register</span></h1>
-      <p>
-        A simple and easy student registration portal for educational
-        institutions.
-      </p>
+
+      <div class="page-header">
+        <h1>Welcome to <span>Register</span></h1>
+        <p>A simple and easy student registration portal for educational
+        institutions. </p>
+    </div
       <a href="regist.html" class="btn">Register Now</a>
       <a href="stdlist.html" class="btn btn-outline">View Students</a>
     </section>

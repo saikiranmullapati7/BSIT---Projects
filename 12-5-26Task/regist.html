@@ -173,6 +173,7 @@
     </style>
   </head>
   <body>
+    
     <nav>
       <div class="logo">Edu<span>Register</span></div>
       <ul>
@@ -192,6 +193,7 @@
     <div class="success-msg" id="successMsg">✅Student registered successfully.</div>
 
     <div class="form-box">
+      <form action="" onsubmit="return validationForm()">
       <h2>📝 Registration Details</h2>
 
       <div class="form-group">
@@ -232,7 +234,7 @@
         <button class="btn btn-view" onclick="viewStudents()">View Students</button>
       </div>
     </div>
-
+</form>
     
     <div class="table-box" id="tableSection" style="display:none;">
       <h2>📋 Registered Students</h2>
@@ -260,125 +262,62 @@
   </footer>
 
   <script>
-    
-    let students = [];
+    function validationForm() {
+    let stdnamepatt = document.getElementById("studentName").value;
+    let emailpatt = document.getElementById("email").value;
+    let mobilepatt = document.getElementById("mobile").value;
 
-   
-    function isValidEmail(email) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
-    }
+    let stdnamepattern = /^[A-Z][a-z]*$/;
 
-    
-    function isValidMobile(mobile) {
-      const mobileRegex = /^[0-9]{10}$/;
-      return mobileRegex.test(mobile);
-    }
+        if (!stdnamepattern.test(stdnamepatt)) {
+          alert("Name should contain only letters");
+          return false;
+        }
 
-    
-    function showError(id, show) {
-      const el = document.getElementById(id);
-      el.style.display = show ? 'block' : 'none';
-    }
+    let emailPattern = /^[a-zA-Z0-9][a-zA-Z0-9._%+\-]*@[a-zA-Z0-9.\-]+\.(com|in|co)$/;
+        if (!emailPattern.test(emailpatt)) {
+          alert("Email: Enter a valid email (e.g. you@gmail.com|com|in|co)");
+          return false;
+        }
 
-   
-    function registerStudent() {
-      const name   = document.getElementById('studentName').value.trim();
-      const email  = document.getElementById('email').value.trim();
-      const mobile = document.getElementById('mobile').value.trim();
-      const course = document.getElementById('course').value;
+    let mobilepattern = /^[6-9][0-9]{9}$/;
+        if (!mobilepattern.test(mobilepatt)) {
+          alert("Mobile Number: Must be 10 digits starting with 6, 7, 8 or 9");
+          return false;
+        }
 
-      let isValid = true;
+    let coursepatt = document.getElementById("course").value;
 
-      
-      if (name === '') {
-        showError('nameError', true); isValid = false;
-      } else {
-        showError('nameError', false);
-      }
+if (coursepatt === "") {
+  alert("Please select a course");
+  return false;
+}
 
-     
-      if (email === '' || !isValidEmail(email)) {
-        showError('emailError', true); isValid = false;
-      } else {
-        showError('emailError', false);
-      }
+        alert("Form submitted successfully");
+        return true;
 
-      
-      if (mobile === '' || !isValidMobile(mobile)) {
-        showError('mobileError', true); isValid = false;
-      } else {
-        showError('mobileError', false);
-      }
+        }
 
-      if (course === '') {
-        showError('courseError', true); isValid = false;
-      } else {
-        showError('courseError', false);
-      }
+        function registerStudent() {
+  if (!validationForm()) return;
 
-      if (!isValid) return;
+  let student = {
+    name: document.getElementById("studentName").value,
+    email: document.getElementById("email").value,
+    mobile: document.getElementById("mobile").value,
+    course: document.getElementById("course").value
+  };
 
-      
-      students.push({ name, email, mobile, course });
+  // ✅ Save to localStorage (same key as stdlist.html uses)
+  let students = JSON.parse(localStorage.getItem("students")) || [];
+  students.push(student);
+  localStorage.setItem("students", JSON.stringify(students));
 
-      
-      const successMsg = document.getElementById('successMsg');
-      successMsg.style.display = 'block';
-      setTimeout(() => { successMsg.style.display = 'none'; }, 3000);
+  resetForm();
 
-      
-      updateTable();
-
-      
-      document.getElementById('tableSection').style.display = 'block';
-
-      
-      resetForm();
-    }
-
-    
-    function updateTable() {
-      const tbody = document.getElementById('studentTableBody');
-      tbody.innerHTML = '';
-
-      if (students.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" class="no-data">No students registered yet.</td></tr>';
-        return;
-      }
-
-      students.forEach((s, index) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${index + 1}</td>
-          <td>${s.name}</td>
-          <td>${s.email}</td>
-          <td>${s.mobile}</td>
-          <td>${s.course}</td>
-        `;
-        tbody.appendChild(row);
-      });
-    }
-
-    
-    function viewStudents() {
-      const tableSection = document.getElementById('tableSection');
-      tableSection.style.display = 'block';
-      updateTable();
-      tableSection.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    
-    function resetForm() {
-      document.getElementById('studentName').value = '';
-      document.getElementById('email').value = '';
-      document.getElementById('mobile').value = '';
-      document.getElementById('course').value = '';
-      showError('nameError', false);
-      showError('emailError', false);
-      showError('mobileError', false);
-      showError('courseError', false);
-    }
+  // ✅ Go to student list page automatically
+  window.location.href = "stdlist.html";
+}
   </script>
   </body>
 </html>

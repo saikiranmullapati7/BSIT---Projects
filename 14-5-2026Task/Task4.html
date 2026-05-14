@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: sans-serif;
+        background: #f2f2f2;
+        color: #222;
+      }
+
+      h1 {
+        font-size: 22px;
+        font-weight: 600;
+      }
+      h2 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+      p {
+        font-size: 14px;
+        line-height: 1.7;
+        color: #555;
+      }
+      a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
+
+      #navbar {
+        background: #3c3489;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      #navbar h1 {
+        color: #fff;
+      }
+
+      #content {
+        max-width: 680px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+
+      #footer {
+        background: #3c3489;
+        color: #ccc;
+        text-align: center;
+        padding: 1rem;
+        font-size: 13px;
+        margin-top: 2rem;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 16px;
+        margin-top: 1rem;
+      }
+
+      .card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .card h2 {
+        font-size: 15px;
+        color: #3c3489;
+        margin-bottom: 4px;
+      }
+      .card p {
+        font-size: 13px;
+      }
+
+      .btn {
+        margin-top: 6px;
+        padding: 7px 14px;
+        border-radius: 6px;
+        border: none;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        width: fit-content;
+      }
+
+      .btn-purple {
+        background: #3c3489;
+        color: #fff;
+      }
+      .btn-teal {
+        background: #0f6e56;
+        color: #fff;
+      }
+      .btn-coral {
+        background: #993c1d;
+        color: #fff;
+      }
+
+      .btn:hover {
+        opacity: 0.85;
+      }
+      .btn:active {
+        transform: scale(0.97);
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="navbar">
+      <h1>My Site</h1>
+      <ul>
+        <li><a href="">Home</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="">Contact</a></li>
+      </ul>
+    </nav>
+    <div id="content">
+      <h2>Our Services</h2>
+      <p>
+        Here are a few things we offer. Each card uses the
+        <code>.card</code> class.
+      </p>
+
+      <div class="cards-grid">
+        <div class="card">
+          <h2>Design</h2>
+          <p>Clean, modern UI built for real users.</p>
+          <button class="btn btn-purple">Learn more</button>
+        </div>
+
+        <div class="card">
+          <h2>Development</h2>
+          <p>Fast, reliable code from front to back.</p>
+          <button class="btn btn-teal">Learn more</button>
+        </div>
+
+        <div class="card">
+          <h2>Support</h2>
+          <p>We're here whenever you need us.</p>
+          <button class="btn btn-coral">Learn more</button>
+        </div>
+      </div>
+    </div>
+
+    <footer id="footer">
+      <p style="color: #ccc">© 2026 MySite. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

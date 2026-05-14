@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: sans-serif;
+        background: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 2rem;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        width: 100%;
+        max-width: 800px;
+      }
+
+      /* .card */
+      .card {
+        border-radius: 12px;
+        padding: 1.5rem 1.25rem;
+        border: 1.5px solid transparent;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .card:nth-child(1) {
+        background: #eeedfe;
+        border-color: #afa9ec;
+      }
+      .card:nth-child(2) {
+        background: #e1f5ee;
+        border-color: #5dcaa5;
+      }
+      .card:nth-child(3) {
+        background: #faece7;
+        border-color: #f0997b;
+      }
+
+      .card .icon {
+        font-size: 28px;
+        margin-bottom: 4px;
+      }
+
+      .card:nth-child(1) .icon {
+        color: #534ab7;
+      }
+      .card:nth-child(2) .icon {
+        color: #0f6e56;
+      }
+      .card:nth-child(3) .icon {
+        color: #993c1d;
+      }
+
+      /* .title */
+      .title {
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      .card:nth-child(1) .title {
+        color: #3c3489;
+      }
+      .card:nth-child(2) .title {
+        color: #085041;
+      }
+      .card:nth-child(3) .title {
+        color: #712b13;
+      }
+
+      .card p.desc {
+        font-size: 14px;
+        line-height: 1.6;
+        flex: 1;
+      }
+
+      .card:nth-child(1) p.desc {
+        color: #534ab7;
+      }
+      .card:nth-child(2) p.desc {
+        color: #0f6e56;
+      }
+      .card:nth-child(3) p.desc {
+        color: #993c1d;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 8px;
+        padding: 9px 18px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        border: 1.5px solid transparent;
+        transition:
+          opacity 0.15s,
+          transform 0.1s;
+        width: fit-content;
+      }
+
+      .btn:hover {
+        opacity: 0.85;
+      }
+      .btn:active {
+        transform: scale(0.97);
+      }
+
+      .card:nth-child(1) .btn {
+        background: #534ab7;
+        color: #eeedfe;
+        border-color: #3c3489;
+      }
+      .card:nth-child(2) .btn {
+        background: #0f6e56;
+        color: #e1f5ee;
+        border-color: #085041;
+      }
+      .card:nth-child(3) .btn {
+        background: #993c1d;
+        color: #faece7;
+        border-color: #712b13;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="icon"><i class="ti ti-bolt"></i></div>
+        <p class="title">Fast Performance</p>
+        <p class="desc">
+          Optimized for speed at every step, so your users never wait.
+        </p>
+        <button class="btn">
+          <i class="ti ti-arrow-right"></i> Get started
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="ti ti-shield-check"></i></div>
+        <p class="title">Secure by Default</p>
+        <p class="desc">
+          End-to-end encryption and best-in-class access controls built in.
+        </p>
+        <button class="btn"><i class="ti ti-lock"></i> Learn more</button>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="ti ti-heart"></i></div>
+        <p class="title">Loved by Teams</p>
+        <p class="desc">
+          Designed around real workflows, so collaboration feels effortless.
+        </p>
+        <button class="btn"><i class="ti ti-users"></i> See plans</button>
+      </div>
+    </div>
+  </body>
+</html>

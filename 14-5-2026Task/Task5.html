@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #f2f2f2;
+        margin: 0;
+        padding: 2rem;
+      }
+      h1 {
+        font-size: 22px;
+        font-weight: 600;
+        color: #222;
+        margin: 0;
+      }
+      h2 {
+        font-size: 13px;
+        font-weight: 400;
+        color: #888;
+        margin: 4px 0 0;
+      }
+      p {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.7;
+        margin: 12px 0;
+      }
+
+      #profile {
+        max-width: 340px;
+        margin: 0 auto;
+      }
+
+      #header {
+        background: #3c3489;
+        border-radius: 10px 10px 0 0;
+        height: 80px;
+      }
+
+      #info {
+        background: #fff;
+        border-radius: 0 0 10px 10px;
+        padding: 0 1.5rem 1.5rem;
+        border: 1px solid #ddd;
+        border-top: none;
+        text-align: center;
+      }
+
+      .avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 3px solid #fff;
+        background: #afa9ec;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        font-weight: 600;
+        color: #3c3489;
+        margin: -40px auto 12px;
+      }
+
+      .badge {
+        display: inline-block;
+        background: #eeedfe;
+        color: #534ab7;
+        font-size: 12px;
+        padding: 3px 10px;
+        border-radius: 20px;
+        margin-bottom: 4px;
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background: #3c3489;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        margin-top: 16px;
+      }
+
+      .btn:hover {
+        opacity: 0.85;
+      }
+      .btn:active {
+        transform: scale(0.98);
+      }
+
+      .stats {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin: 12px 0 0;
+        padding-top: 12px;
+        border-top: 1px solid #eee;
+      }
+
+      .stat span {
+        display: block;
+        font-size: 16px;
+        font-weight: 600;
+        color: #222;
+      }
+      .stat small {
+        font-size: 12px;
+        color: #999;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="profile">
+      <div id="header"></div>
+
+      <div id="info">
+        <div class="avatar">SK</div>
+
+        <h1>Sai kiran</h1>
+        <h2>UI Designer · Hyderabad</h2>
+        <span class="badge">✦ Pro Member</span>
+
+        <p>
+          Crafting clean interfaces and smooth experiences. Passionate about
+          design systems and open source.
+        </p>
+
+        <div class="stats">
+          <div class="stat"><span>128</span><small>Posts</small></div>
+          <div class="stat"><span>4.2k</span><small>Followers</small></div>
+          <div class="stat"><span>310</span><small>Following</small></div>
+        </div>
+
+        <button class="btn">+ Follow</button>
+      </div>
+    </div>
+  </body>
+</html>

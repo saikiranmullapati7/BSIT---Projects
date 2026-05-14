@@ -322,45 +322,9 @@
     </footer>
 
     <script>
-      let students = [
-        {
-          name: "Ravi Kumar",
-          email: "ravi@gmail.com",
-          mobile: "9876543210",
-          course: "BSIT",
-        },
-        {
-          name: "Priya Sharma",
-          email: "priya@gmail.com",
-          mobile: "9123456780",
-          course: "BCA",
-        },
-        {
-          name: "Anil Reddy",
-          email: "anil@gmail.com",
-          mobile: "9988776655",
-          course: "MCA",
-        },
-        {
-          name: "Sneha Patel",
-          email: "sneha@gmail.com",
-          mobile: "9012345678",
-          course: "BBA",
-        },
-        {
-          name: "Kiran Rao",
-          email: "kiran@gmail.com",
-          mobile: "9345678901",
-          course: "BSIT",
-        },
-      ];
+      let students = JSON.parse(localStorage.getItem("students")) || [];
 
       window.onload = function () {
-        const saved = localStorage.getItem("eduStudents");
-        if (saved) {
-          const extra = JSON.parse(saved);
-          students = students.concat(extra);
-        }
         renderTable(students);
         updateSummary(students);
       };
@@ -371,20 +335,20 @@
 
         if (data.length === 0) {
           tbody.innerHTML =
-            '<tr><td colspan="6" class="no-data">No students found.</td></tr>';
+            '<tr><td colspan="6" class="no-data">No students registered yet. <a href="regist.html">Register here</a></td></tr>';
           return;
         }
 
         data.forEach((s, index) => {
           const row = document.createElement("tr");
           row.innerHTML = `
-          <td>${index + 1}</td>
-          <td>${s.name}</td>
-          <td>${s.email}</td>
-          <td>${s.mobile}</td>
-          <td><span class="badge">${s.course}</span></td>
-          <td><button class="delete-btn" onclick="deleteStudent(${index})">Delete</button></td>
-        `;
+      <td>${index + 1}</td>
+      <td>${s.name}</td>
+      <td>${s.email}</td>
+      <td>${s.mobile}</td>
+      <td><span class="badge">${s.course}</span></td>
+      <td><button class="delete-btn" onclick="deleteStudent(${index})">Delete</button></td>
+    `;
           tbody.appendChild(row);
         });
       }
@@ -417,17 +381,18 @@
       }
 
       function deleteStudent(index) {
-        if (confirm("Are you sure you want to delete this student?")) {
+        if (confirm("Delete this student?")) {
           students.splice(index, 1);
+          localStorage.setItem("students", JSON.stringify(students));
           renderTable(students);
           updateSummary(students);
         }
       }
 
       function clearAllStudents() {
-        if (confirm("Are you sure you want to clear ALL students?")) {
+        if (confirm("Clear ALL students?")) {
           students = [];
-          localStorage.removeItem("eduStudents");
+          localStorage.removeItem("students");
           renderTable(students);
           updateSummary(students);
         }
