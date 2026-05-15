@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | YourBrand</title>
+    <style>
+      /* style.css — enhanced version */
+
+      :root {
+        --primary: #4361ee;
+        --primary-dark: #3a56d4;
+        --secondary: #7209b7;
+        --dark: #0a0a0a;
+        --light: #f8f9fa;
+        --gray: #6c757d;
+        --text: #222;
+        --card-bg: #fff;
+        --soft-bg: #f5f5f7;
+        --border: #e0e0e0;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Segoe UI",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Roboto",
+          sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--soft-bg);
+        color: var(--text);
+        line-height: 1.6;
+        background-color: skyblue;
+      }
+
+      /* Header / Nav */
+      header {
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid var(--border);
+      }
+
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: "Georgia", serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--primary);
+        letter-spacing: -0.5px;
+
+        background-color: #f7f5f0;
+        color: #121212;
+        border-bottom: 4px double #121212;
+        border-radius: 5px;
+        background-color: #fbfbf9;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        font-size: 0.95rem;
+        position: relative;
+        padding-bottom: 0.2rem;
+        transition: color 0.3s ease;
+      }
+
+      /* underline hover effect */
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* Main container */
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3.5rem 1.5rem 3rem;
+      }
+
+      /* Page title */
+      .page-title {
+        text-align: center;
+        margin-bottom: 2.5rem;
+        font-size: 2.2rem;
+        color: var(--dark);
+        font-weight: 600;
+        font-family: "Georgia", serif;
+      }
+
+      .page-title span {
+        color: var(--primary);
+        position: relative;
+        display: inline-block;
+      }
+
+      .page-title span::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 80%;
+        height: 3px;
+        background: linear-gradient(to right, var(--primary), var(--secondary));
+        border-radius: 2px;
+      }
+
+      /* Section spacing */
+      .section {
+        margin-bottom: 2.5rem;
+      }
+
+      /* Image styles */
+      .image {
+        background: #ddd;
+        border-radius: 16px;
+        margin-bottom: 1.5rem;
+
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .image:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .image img {
+        display: block; /* Removes unwanted default bottom margin spacing */
+        width: 100%; /* Forces the image to stretch to container width */
+        height: 100%; /* Forces the image to stretch to container height */
+        object-fit: cover; /* Crops and fills the space without squishing shapes */
+        border-radius: 15px;
+      }
+
+      /* Card container (for services / blog grid) */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-top: 1.5rem;
+      }
+
+      .card {
+        background: var(--card-bg);
+        border-radius: 14px;
+        padding: 1.8rem;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .card h3 {
+        margin-bottom: 0.8rem;
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 1.15rem;
+      }
+
+      .card p {
+        font-size: 0.95rem;
+        color: var(--gray);
+      }
+
+      /* Hero section */
+      .hero {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+
+      .hero h2 {
+        font-size: 1.2rem;
+        color: var(--gray);
+        margin-bottom: 1rem;
+      }
+
+      /* Button */
+      .btn {
+        display: inline-block;
+        padding: 0.9rem 2rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+        color: #fff;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        letter-spacing: 0.1px;
+        box-shadow: 0 4px 12px rgba(67, 97, 238, 0.25);
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(67, 97, 238, 0.35);
+      }
+
+      /* Form styles */
+      .form-group {
+        margin-bottom: 1.2rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: var(--dark);
+        font-size: 0.95rem;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.9rem;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        font-size: 1rem;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        transition:
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+      }
+
+      .form-group textarea {
+        height: 120px;
+        resize: vertical;
+      }
+
+      /* Blog article styling */
+      article {
+        background: var(--card-bg);
+        border-radius: 14px;
+        padding: 1.8rem;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      article:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      article h2 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+        color: var(--dark);
+      }
+
+      article p {
+        margin: 0.4rem 0;
+        font-size: 0.95rem;
+        color: var(--gray);
+      }
+
+      /* Footer */
+      footer {
+        background: linear-gradient(to bottom, var(--dark), #000000);
+        color: #fff;
+        padding: 2.5rem 1.5rem;
+        text-align: center;
+        font-size: 0.95rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      footer a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        margin: 0 0.6rem;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* Extra: smooth page transitions (fade on scroll) */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      main {
+        opacity: 0;
+        animation: fadeIn 0.6s ease forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">NYTimes</div>
+        <div class="nav-links">
+          <a href="home.html"><b>Home</b></a>
+          <a href="services.html">Services</a>
+          <a href="aboutUs.html">About Us</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="page-title">Welcome to <span>New York Times</span></h1>
+      <div class="image">
+        <img src="home.jpg" alt="" />
+      </div>
+      <p>
+        The New York Times homepage is the main entry point for its latest
+        breaking news, top stories, and live updates across U.S., world,
+        politics, business, sports, and more.<br />
+        It is organized to help readers quickly find the day’s most important
+        headlines, along with featured reporting, opinion, video, and special
+        sections.<br />
+        The homepage also reflects the Times’ broader news focus, which includes
+        domestic, national, and international coverage presented in a
+        digital-first format.
+      </p>
+
+      <a href="services.html" class="btn">View Services</a>
+    </main>
+
+    <footer>
+      <p>© 2026 YourBrand. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YourBrand - Modern Corporate Website</title>
+    <style>
+      /* --- RESET & GLOBAL STYLES --- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: #f8f9fa;
+        color: #333;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* --- HEADER & NAVIGATION --- */
+      header {
+        background: #ffffff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+      }
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+        color: #0d47a1;
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: #555;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: #0d47a1;
+      }
+
+      /* --- SECTION HEADINGS --- */
+      .section-title {
+        text-align: center;
+        font-size: 36px;
+        color: #0d47a1;
+        margin-bottom: 10px;
+        position: relative;
+        padding-bottom: 15px;
+      }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background-color: #0d47a1;
+      }
+      section {
+        padding: 100px 0 60px 0;
+      }
+
+      /* --- IMAGE PLACEHOLDER BANNER --- */
+      .media-banner {
+        width: 100%;
+        height: 350px;
+        background-color: #dbdbdb;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        font-weight: 500;
+      }
+
+      /* --- BUTTONS --- */
+      .btn-primary {
+        display: inline-block;
+        background-color: #0066cc;
+        color: #fff;
+        padding: 12px 30px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      .btn-primary:hover {
+        background-color: #004ea3;
+      }
+
+      /* --- HOME / ABOUT SECTION --- */
+      #about .about-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      #about p {
+        color: #555;
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
+      #about .highlight-text {
+        font-size: 18px;
+        font-weight: 600;
+        color: #222;
+      }
+
+      /* --- SERVICES SECTION --- */
+      #services .services-intro {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 30px auto;
+        color: #555;
+      }
+      .services-list {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .service-item {
+        margin-bottom: 25px;
+      }
+      .service-item h3 {
+        color: #222;
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+      .service-item p {
+        color: #666;
+      }
+
+      /* --- BLOG SECTION --- */
+      .blog-row {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        margin-bottom: 50px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+      }
+      .blog-info {
+        flex: 1;
+      }
+      .blog-pic {
+        flex: 1;
+        height: 250px;
+        background-color: #dbdbdb;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+      }
+      .blog-date {
+        font-size: 14px;
+        color: #999;
+        margin-bottom: 5px;
+      }
+      .blog-info h3 {
+        font-size: 22px;
+        color: #222;
+        margin-bottom: 10px;
+      }
+      .blog-info p {
+        color: #666;
+      }
+
+      /* --- CONTACT SECTION --- */
+      #contact .contact-container {
+        max-width: 650px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      }
+      #contact p {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #555;
+      }
+      .form-group {
+        margin-bottom: 20px;
+        position: relative;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+      }
+      .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 15px;
+        transition: border-color 0.3s ease;
+      }
+      .form-control:focus {
+        outline: none;
+        border-color: #0066cc;
+      }
+      .error-msg {
+        color: #d32f2f;
+        font-size: 13px;
+        margin-top: 5px;
+        display: none;
+      }
+      .form-group.invalid .form-control {
+        border-color: #d32f2f;
+        background-color: #fff8f8;
+      }
+      .form-group.invalid .error-msg {
+        display: block;
+      }
+      .success-banner {
+        display: none;
+        background-color: #e8f5e9;
+        color: #2e7d32;
+        padding: 15px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      /* --- RESPONSIVE DESIGN --- */
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          gap: 15px;
+        }
+        .blog-row {
+          flex-direction: column;
+        }
+        .blog-pic {
+          width: 100%;
+          height: 200px;
+        }
+        section {
+          padding: 120px 0 40px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER / NAVIGATION -->
+    <header>
+      <div class="container navbar">
+        <a href="#about" class="logo">YourBrand</a>
+        <ul class="nav-links">
+          <li><a href="#about" class="active">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- HOME / ABOUT US SECTION -->
+    <section id="about">
+      <div class="container">
+        <h1 class="section-title">About Us</h1>
+        <div class="media-banner">Image Placeholder</div>
+        <div class="about-content">
+          <p class="highlight-text">
+            We are a small creative team passionate about building clean, modern
+            websites.
+          </p>
+          <p>
+            Our mission is to help businesses present themselves online with
+            simple, professional websites.
+          </p>
+          <p>
+            With a focus on usability and clean design, we make it easy for
+            visitors to navigate and convert.
+          </p>
+          <a href="#services" class="btn-primary" style="margin-top: 15px"
+            >See Our Services</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services">
+      <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <div class="media-banner">Image Placeholder</div>
+        <div class="services-intro">
+          <p>
+            We provide professional web development and design services tailored
+            to your business.
+          </p>
+        </div>
+        <div class="services-list">
+          <div class="service-item">
+            <h3>Web Design</h3>
+            <p>
+              Beautiful, responsive websites that work perfectly on desktop and
+              mobile devices.
+            </p>
+          </div>
+          <div class="service-item">
+            <h3>Web Development</h3>
+            <p>
+              Well-structured HTML + CSS code with clean layouts, fast load
+              speeds, and easy navigation.
+            </p>
+          </div>
+          <div class="service-item">
+            <h3>Digital Marketing</h3>
+            <p>
+              Strategic online campaigns optimized to scale brand visibility and
+              maximize direct conversions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG SECTION -->
+    <section id="blog">
+      <div class="container">
+        <h2 class="section-title">Latest Blog</h2>
+
+        <!-- Row 1 -->
+        <div class="blog-row">
+          <div class="blog-info">
+            <div class="blog-date">May 10, 2026</div>
+            <h3>How to Design a Modern Website</h3>
+            <p>
+              A simple guide to modern website design principles, layout
+              structures, and optimizing user experiences for modern devices.
+            </p>
+          </div>
+          <div class="blog-pic">Image Placeholder</div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="blog-row">
+          <div class="blog-info">
+            <div class="blog-date">May 05, 2026</div>
+            <h3>Understanding Clean Architecture</h3>
+            <p>
+              Why well-structured HTML and semantic CSS modules form the
+              baseline foundation for excellent web applications.
+            </p>
+          </div>
+          <div class="blog-pic">Image Placeholder</div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="blog-row">
+          <div class="blog-info">
+            <div class="blog-date">April 28, 2026</div>
+            <h3>Optimizing User Navigation</h3>
+            <p>
+              Simple strategies to keep interface designs clean, layouts highly
+              intuitive, and conversions continuously growing.
+            </p>
+          </div>
+          <div class="blog-pic">Image Placeholder</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT US SECTION WITH VALIDATION -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+          <p>Have questions? Send us a message and we'll get back to you.</p>
+
+          <div id="successBanner" class="success-banner">
+            Message sent successfully!
+          </div>
+
+          <form id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                class="form-control"
+                placeholder="Your name"
+              />
+              <div class="error-msg">Please enter your name.</div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                placeholder="Your email"
+              />
+              <div class="error-msg">Please enter a valid email address.</div>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                class="form-control"
+                rows="5"
+                placeholder="Your message"
+              ></textarea>
+              <div class="error-msg">Please enter your message.</div>
+            </div>
+            <button type="submit" class="btn-primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT FOR FORM VALIDATION AND ACTIVE NAV INTERACTION -->
+    <script>
+      // Form Validation System
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          let isValid = true;
+          const name = document.getElementById("name");
+          const email = document.getElementById("email");
+          const message = document.getElementById("message");
+          const successBanner = document.getElementById("successBanner");
+
+          // Name Validation
+          if (name.value.trim() === "") {
+            name.parentElement.classList.add("invalid");
+            isValid = false;
+          } else {
+            name.parentElement.classList.remove("invalid");
+          }
+
+          // Email Validation
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email.value.trim())) {
+            email.parentElement.classList.add("invalid");
+            isValid = false;
+          } else {
+            email.parentElement.classList.remove("invalid");
+          }
+
+          // Message Validation
+          if (message.value.trim() === "") {
+            message.parentElement.classList.add("invalid");
+            isValid = false;
+          } else {
+            message.parentElement.classList.remove("invalid");
+          }
+
+          // Success Execution
+          if (isValid) {
+            successBanner.style.display = "block";
+            this.reset();
+            setTimeout(() => {
+              successBanner.style.display = "none";
+            }, 4000);
+          }
+        });
+
+      // Navigation Active Highlight Tracker
+      const links = document.querySelectorAll(".nav-links a");
+      links.forEach((link) => {
+        link.addEventListener("click", function () {
+          links.forEach((l) => l.classList.remove("active"));
+          this.classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>

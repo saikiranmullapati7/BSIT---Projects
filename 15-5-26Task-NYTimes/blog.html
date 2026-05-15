@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | YourBrand</title>
+    <style>
+      :root {
+        --primary: #4361ee;
+        --primary-dark: #3a56d4;
+        --secondary: #7209b7;
+        --dark: #0a0a0a;
+        --light: #f8f9fa;
+        --gray: #6c757d;
+        --text: #222;
+        --card-bg: #fff;
+        --soft-bg: #f5f5f7;
+        --border: #e0e0e0;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Segoe UI",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Roboto",
+          sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--soft-bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      /* Header / Nav */
+      header {
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid var(--border);
+      }
+
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: "Georgia", serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--primary);
+        letter-spacing: -0.5px;
+        background-color: #f7f5f0;
+        color: #121212;
+        border-bottom: 4px double #121212;
+        border-radius: 5px;
+        background-color: #fbfbf9;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        font-size: 0.95rem;
+        position: relative;
+        padding-bottom: 0.2rem;
+        transition: color 0.3s ease;
+      }
+
+      /* underline hover effect */
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* Main container */
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3.5rem 1.5rem 3rem;
+      }
+
+      /* Page title */
+      .page-title {
+        text-align: center;
+        margin-bottom: 2.5rem;
+        font-size: 2.2rem;
+        color: var(--dark);
+        font-weight: 600;
+        font-family: "Georgia", serif;
+      }
+
+      .page-title span {
+        color: var(--primary);
+        position: relative;
+        display: inline-block;
+      }
+
+      .page-title span::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 80%;
+        height: 3px;
+        background: linear-gradient(to right, var(--primary), var(--secondary));
+        border-radius: 2px;
+      }
+
+      /* Section spacing */
+      .section {
+        margin-bottom: 2.5rem;
+      }
+
+      /* Image styles */
+      .image {
+        background: #ddd;
+        border-radius: 16px;
+        margin-bottom: 1.5rem;
+
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .image:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .image img {
+        display: block; /* Removes unwanted default bottom margin spacing */
+        width: 100%; /* Forces the image to stretch to container width */
+        height: 100%; /* Forces the image to stretch to container height */
+        object-fit: cover; /* Crops and fills the space without squishing shapes */
+        border-radius: 15px;
+      }
+
+      /* Card container (for services / blog grid) */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-top: 1.5rem;
+      }
+
+      .card {
+        background: var(--card-bg);
+        border-radius: 14px;
+        padding: 1.8rem;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .card h3 {
+        margin-bottom: 0.8rem;
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 1.15rem;
+      }
+
+      .card p {
+        font-size: 0.95rem;
+        color: var(--gray);
+      }
+
+      /* Hero section */
+      .hero {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+
+      .hero h2 {
+        font-size: 1.2rem;
+        color: var(--gray);
+        margin-bottom: 1rem;
+      }
+
+      /* Button */
+      .btn {
+        display: inline-block;
+        padding: 0.9rem 2rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+        color: #fff;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        letter-spacing: 0.1px;
+        box-shadow: 0 4px 12px rgba(67, 97, 238, 0.25);
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(67, 97, 238, 0.35);
+      }
+
+      /* Form styles */
+      .form-group {
+        margin-bottom: 1.2rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: var(--dark);
+        font-size: 0.95rem;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.9rem;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        font-size: 1rem;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        transition:
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+      }
+
+      .form-group textarea {
+        height: 120px;
+        resize: vertical;
+      }
+
+      /* Blog article styling */
+      article {
+        background: var(--card-bg);
+        border-radius: 14px;
+        padding: 1.8rem;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      article:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      article h2 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+        color: var(--dark);
+      }
+
+      article p {
+        margin: 0.4rem 0;
+        font-size: 0.95rem;
+        color: var(--gray);
+      }
+
+      /* Core Layout Structure */
+      #blog {
+        padding: 5rem 0;
+        background-color: #f8f9fa;
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+      }
+
+      .container {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .section-title {
+        font-size: 2.25rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 3rem;
+        text-align: center;
+      }
+
+      /* Individual Blog Rows */
+      .blog-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3rem;
+        background: #ffffff;
+        background-color: skyblue;
+        border-radius: 16px;
+        margin-bottom: 2rem;
+        padding: 2.5rem;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      /* Elevate card on hover */
+      .blog-row:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Alternating Row Layout (Z-Pattern) */
+      .blog-row:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      /* Content Elements */
+      .blog-info {
+        flex: 1.2;
+      }
+
+      .blog-date {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #718096;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.75rem;
+      }
+
+      .blog-info h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 1rem;
+        line-height: 1.3;
+      }
+
+      .blog-info p {
+        font-size: 1rem;
+        color: #4a5568;
+        line-height: 1.6;
+      }
+
+      /* Image Containers */
+      .blog-pic {
+        flex: 0.8;
+        height: 220px;
+        background: #ddd;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #718096;
+        font-weight: 500;
+        overflow: hidden;
+      }
+
+      /* Targets real image elements when you replace the placeholder text */
+      .blog-pic img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Mobile Responsive Adapters */
+      @media (max-width: 768px) {
+        .blog-row,
+        .blog-row:nth-child(even) {
+          flex-direction: column-reverse;
+          gap: 1.5rem;
+          padding: 1.5rem;
+        }
+
+        .blog-pic {
+          width: 100%;
+          height: 200px;
+        }
+      }
+
+      /* Footer */
+      footer {
+        background: linear-gradient(to bottom, var(--dark), #000000);
+        color: #fff;
+        padding: 2.5rem 1.5rem;
+        text-align: center;
+        font-size: 0.95rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      footer a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        margin: 0 0.6rem;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* Extra: smooth page transitions (fade on scroll) */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      main {
+        opacity: 0;
+        animation: fadeIn 0.6s ease forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">NYTimes</div>
+        <div class="nav-links">
+          <a href="home.html"><b>Home</b></a>
+          <a href="services.html">Services</a>
+          <a href="aboutUs.html">About Us</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="page-title">Latest <span>Blog</span></h1>
+
+      <article>
+        <div class="image">
+          <!-- <img src="images/blog1.jpg" alt="Blog 1"> -->
+        </div>
+        <h2>New York times Website</h2>
+        <p>May 10, 2026</p>
+        <p>
+          A simple guide to modern website design principles, layout, and user
+          experience.
+        </p>
+      </article>
+
+      <section id="blog">
+        <div class="container">
+          <h2 class="section-title">Latest Blog</h2>
+
+          <!-- Row 1 -->
+          <div class="blog-row">
+            <div class="blog-info">
+              <div class="blog-date">Feb 1, 2017</div>
+              <h3>Highlighting Women in Photojournalism</h3>
+              <p>
+                In 1973, Sara Krulwich visited 29 newspapers, looking for a job
+                after graduating from the University of Michigan. She met with
+                male photo editors who mostly scoffed at the idea of a woman as
+                a news photographer. One editor, she said, told her that hiring
+                a woman was like “hiring half a person.” When finally she did
+                land a temporary job at the Providence Journal, an editor
+                cornered her in the darkroom and tried to kiss her, she
+                recounts. Ms. Krulwich was hired by The New York Times in 1979,
+                a year after the settlement of a suit by women employees over
+                sex discrimination in hiring, pay and promotion. She was among
+                the first female staff photographers, and she recalls facing
+                rampant sexism from many of her colleagues. Minority
+                photographers also “had a very hard time,” she added. These
+                difficulties, she said, lasted until Carolyn Lee became the
+                first woman to lead the department in 1984.
+              </p>
+            </div>
+            <div class="blog-pic"><img src="blog1.jpg" alt="" /></div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="blog-row">
+            <div class="blog-info">
+              <div class="blog-date">May 05, 2026</div>
+              <h3>Understanding Clean Architecture</h3>
+              <p>
+                The image features two Otavaleño vendors in traditional attire
+                arranging colorful, hand-woven alpaca blankets and textiles at
+                the open-air market in Otavalo, Ecuador. This photo is part of a
+                curated travel column focusing on vibrant, indigenous cultural
+                scenes in South America. For more information, visit The New
+                York Times travel section.
+              </p>
+            </div>
+            <div class="blog-pic"><img src="blog2.jpg" alt="" /></div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="blog-row">
+            <div class="blog-info">
+              <div class="blog-date">May 11, 2026</div>
+              <h3>What’s Going On in This Picture? |</h3>
+              <p>
+                This week’s image comes from the article “What a Bike Ride
+                Showed Me About Apartheid’s Legacy,” published on May 5. To
+                write the article, a New York Times reporter joined a group of
+                cyclists on a route meant to break down Cape Town’s lingering
+                racial and economic barriers. The original caption reads:
+                “Residents read books on the street during an Open Streets event
+                on Bree Street in central Cape Town.”
+              </p>
+            </div>
+            <div class="blog-pic"><img src="blog3.webp" alt="" /></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 YourBrand. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
